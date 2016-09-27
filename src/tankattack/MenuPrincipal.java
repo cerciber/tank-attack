@@ -1,5 +1,5 @@
 
-package capturalabandera;
+package tankattack;
 
 public class MenuPrincipal {
     
