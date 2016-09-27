@@ -17,30 +17,8 @@ import javax.swing.JPanel;
  */
 public class GameLoop extends JPanel implements Runnable{
     
-    int pausaDeTiempo = 10;
-    
-    JFrame frame= new JFrame();
+    int pausaDeTiempo = 1000;
     MenuPrincipal menuPrincipal = new MenuPrincipal(); 
-    
-    public GameLoop(){
-        
-        frame.setTitle("Tank Attack");
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setSize(800,600);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.add(this);
-        
-    }
-    
-    @Override
-    public void addNotify(){
-        
-        super.addNotify();
-        new Thread(this);
-        
-    }
     
     @Override
     public void paint(Graphics g){
@@ -75,11 +53,10 @@ public class GameLoop extends JPanel implements Runnable{
         
         while(true){
             
+            System.out.println("FSDFSD");
             actualizar();
             repaint();
-            
-            try{Thread.sleep(1000);}
-            catch(InterruptedException ex){}
+            Esperar();
             
         }
         
