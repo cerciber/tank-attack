@@ -1,6 +1,6 @@
 package tankattack;
 
-public class CapturaLaBandera {
+public class TankAttack {
 
     public static void main(String[] args) {
 
