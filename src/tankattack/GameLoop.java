@@ -3,6 +3,11 @@ package tankattack;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
 public class GameLoop extends JPanel implements Runnable{
@@ -29,7 +34,48 @@ public class GameLoop extends JPanel implements Runnable{
     // Metodo para gestionar acciones del mouse y el teclado
     public void eventos(){
         
+        this.getParent().addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent ke) {}
+
+            @Override
+            public void keyPressed(KeyEvent ke) {}
+
+            @Override
+            public void keyReleased(KeyEvent ke) {}
+           
+        });
+
+        this.getParent().addMouseMotionListener(new MouseMotionListener() {
+
+            @Override
+            public void mouseDragged(MouseEvent me) {}
+
+            @Override
+            public void mouseMoved(MouseEvent me) {}
+
+        });
         
+        
+        this.getParent().addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent me) {}
+
+            @Override
+            public void mousePressed(MouseEvent me) {}
+
+            @Override
+            public void mouseReleased(MouseEvent me) {}
+
+            @Override
+            public void mouseEntered(MouseEvent me) {}
+
+            @Override
+            public void mouseExited(MouseEvent me) {}
+            
+        });
         
     } 
     
@@ -43,7 +89,7 @@ public class GameLoop extends JPanel implements Runnable{
         if(dirX){x++;}else{x--;}
         if(dirY){y++;}else{y--;}
         
-        
+
     }
 
     // Metodo para pausar el hilo por un lapso de tiempo determinado
