@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 
 public class GameLoop extends JPanel implements Runnable{
     
+    // peridodo de pausa del gameloop en milisegundos
     int pausaDeTiempo = 1;   
-    MenuPrincipal menuPrincipal = new MenuPrincipal(); 
     
-    int x = 0,y = 0;
-    boolean dirX = true, dirY = true;
+    // crear  objeto bandera
+    Bandera bandera = new Bandera(); 
     
     // Metodo para pintar elementos en pantalla
     @Override
@@ -25,10 +25,13 @@ public class GameLoop extends JPanel implements Runnable{
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
         
-        g.setColor (Color.BLACK);
-        g.fillRect (0, 0, 800, 600);
-        g.setColor (Color.yellow);
-        g.fillOval (x, y, 200, 200);
+        // Pintar fondo blanco de acuerdo al tamaño de la ventana
+        g2.setColor (Color.white);
+        g2.fillRect(0, 0, this.getWidth(), this.getWidth());
+        
+        // Pintar bandera
+        bandera.paint(g2);
+        
     }
     
     // Metodo para gestionar acciones del mouse y el teclado
@@ -81,13 +84,6 @@ public class GameLoop extends JPanel implements Runnable{
     
     // Metodo para actualizarlos datos del juego
     public void actualizar(){
-        
-        if(x < 0){dirX = true;}
-        if(y < 0){dirY = true;}
-        if(x > 600){dirX = false;}
-        if(y > 400){dirY = false;}
-        if(dirX){x++;}else{x--;}
-        if(dirY){y++;}else{y--;}
         
 
     }
