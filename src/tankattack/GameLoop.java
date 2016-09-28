@@ -1,25 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tankattack;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
 
-/**
- *
- * @author cesar
- */
 public class GameLoop extends JPanel implements Runnable{
     
-    int pausaDeTiempo = 1000;
+    int pausaDeTiempo = 1000;   
     MenuPrincipal menuPrincipal = new MenuPrincipal(); 
     
+    // Metodo para pintar elementos en pantalla
     @Override
     public void paint(Graphics g){
         
@@ -28,24 +18,28 @@ public class GameLoop extends JPanel implements Runnable{
         
     }
     
+    // Metodo para gestionar acciones del mouse y el teclado
     public void eventos(){
         
         
         
     } 
     
+    // Metodo para actualizarlos datos del juego
     public void actualizar(){
         
         
         
     }
 
+    // Metodo para pausar el hilo por un lapso de tiempo determinado
     public void Esperar() {
     
         try{Thread.sleep(pausaDeTiempo);}
         catch(InterruptedException ex){}
     }
     
+    // Metodo para ejecutar los metodos anteriores indefinidamente
     @Override
     public void run() {
         
@@ -53,7 +47,6 @@ public class GameLoop extends JPanel implements Runnable{
         
         while(true){
             
-            System.out.println("FSDFSD");
             actualizar();
             repaint();
             Esperar();
