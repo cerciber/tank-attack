@@ -1,6 +1,5 @@
 package tankattack;
 
-// Librerias
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,91 +10,71 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
-/* Clase GameLoop que permite:
-    - Visualizar graficos a la ventana
-    - Reponder a eventos del mouse y el teclado
-    - Actualizar infomracion cada periodo de tiempo
-*/
 public class GameLoop extends JPanel implements Runnable{
     
-    /* Variables globales */
-    int pausaDeTiempo = 1;   // Peridodo de pausa del gameloop en milisegundos
+    // peridodo de pausa del gameloop en milisegundos
+    int pausaDeTiempo = 1;   
     
-    /* Objetos involucrados */
-    MenuPrincipal menuPrincipal = new MenuPrincipal(); // crear objeto Menu Principal
+    // crear  objeto bandera
+    Bandera bandera = new Bandera(); 
     
-    /* Metodo para Visualizar graficos a la ventana 
-       - Este metodo viene de la clase padre JPanel
-    */
+    // Metodo para pintar elementos en pantalla
     @Override
     public void paint(Graphics g){
         
-        /* Obtener obejeto grafico del Panel */
-        super.paint(g);  // Asignar objeto que se pintará
-        Graphics2D g2 = (Graphics2D) g; //Crear objeto Graphics2D para acceder a mas propiedades de los graficos
+        super.paint(g);
+        Graphics2D g2 = (Graphics2D) g;
         
         // Pintar fondo blanco de acuerdo al tamaño de la ventana
         g2.setColor (Color.white);
         g2.fillRect(0, 0, this.getWidth(), this.getWidth());
         
-        // Pintar menu Principal
-        menuPrincipal.paint(g2);
+        // Pintar bandera
+        bandera.paint(g2);
         
     }
     
-    /* Metodo para gestionar acciones del mouse y el teclado */
+    // Metodo para gestionar acciones del mouse y el teclado
     public void eventos(){
         
-        /* Detectar acciones del teclado en la ventana */
         this.getParent().addKeyListener(new KeyListener() {
 
-            /* Detectar cuando se tipea una letra */
             @Override
             public void keyTyped(KeyEvent ke) {}
 
-            /* Detectar cuando se presiona una letra */
             @Override
             public void keyPressed(KeyEvent ke) {}
 
-            /* Detectar cuando se suelta una letra */
             @Override
             public void keyReleased(KeyEvent ke) {}
            
         });
 
-        /* Detectar movimiento del mouse en la ventana */
         this.getParent().addMouseMotionListener(new MouseMotionListener() {
 
-            /* Detectar movimiento del mouse arrastrado */
             @Override
             public void mouseDragged(MouseEvent me) {}
 
-            /* Detectar movimiento del mouse sin presionar */
             @Override
             public void mouseMoved(MouseEvent me) {}
 
         });
         
-        /* Detectar acciones del mouse en la ventana */
+        
         this.getParent().addMouseListener(new MouseListener() {
 
-            /* Detectar click del mouse */
             @Override
             public void mouseClicked(MouseEvent me) {}
 
-            /* Detectar cuando se presiona una tecla del mouse */
             @Override
             public void mousePressed(MouseEvent me) {}
 
-            /* Detectar cuando se suelta una tecla del mouse */
             @Override
             public void mouseReleased(MouseEvent me) {}
 
-            /* Detectar cuando el mouse entra en la ventana */
             @Override
             public void mouseEntered(MouseEvent me) {}
 
-            /* Detectar cuando el mouse sale de la ventana */
             @Override
             public void mouseExited(MouseEvent me) {}
             
@@ -103,32 +82,30 @@ public class GameLoop extends JPanel implements Runnable{
         
     } 
     
-    // Metodo para actualizar información del juego
+    // Metodo para actualizarlos datos del juego
     public void actualizar(){
-    
+        
+
     }
 
-    // Metodo para pausar el hilo por un periodo de tiempo determinado
+    // Metodo para pausar el hilo por un lapso de tiempo determinado
     public void Esperar() {
     
         try{Thread.sleep(pausaDeTiempo);}
         catch(InterruptedException ex){}
     }
     
-    /* Metodo para ejecutar los metodos anteriores indefinidamente
-       - Este metodo viene de la clase implemetada Runnable
-    */
+    // Metodo para ejecutar los metodos anteriores indefinidamente
     @Override
     public void run() {
         
-        eventos();  // Llamar metodo eventos
+        eventos();
         
-        /* Repetir llamado de eventos indefinidamente */
         while(true){
             
-            actualizar();  // Llamar metodo actualizar
-            repaint();  // Llamar metodo paint
-            Esperar();  // Llamar metodo esperar
+            actualizar();
+            repaint();
+            Esperar();
             
         }
         

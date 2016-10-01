@@ -1,34 +1,27 @@
 package tankattack;
 
-// Librerias
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
 
-/* Clase principal en la cual se crea la ventana y se añade el Gameloop*/
 public class TankAttack {
 
-    // Metodo que inicia el programa
     public static void main(String[] args) {
 
-        /* Crear objeto ventana */
+        // Crear ventana
         JFrame frame = new JFrame();
         
-        /* Asignar propiedades de ventana */
-        frame.setTitle("Tank Attack");  // Estblecer titulo
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);    //  Finalizar programa al cerrar la ventana
-        frame.setSize(800,600); // Establecer altra y ancho
-        frame.setResizable(false);  // Desactivar redimecionamiento de la ventana
-        frame.setLocationRelativeTo(null);  // Ubicar en el centro de la pantalla al inicarse
-        frame.setVisible(true);  // Mostrar ventana en la pantalla
+        // Asignar propiedades de ventana
+        frame.setTitle("Tank Attack");
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setSize(800,600);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
         
-        /* Crear objeto GameLoop */ 
+        // Llamar GameLoop en un nuevo hilo
         Runnable gameloop = new GameLoop();
-        
-        /* Crear un hilo para ejecutar el objeto GameLoop */
         new Thread(gameloop).start();
-        
-        // Añadir Gameloop a la ventana como Panel
         frame.add((JPanel)gameloop);
         
     }

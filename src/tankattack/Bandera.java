@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 
 public class Bandera {
 
-    int x = 225; // Posicion en x
+    int x = 25; // Posicion en x
     int y = 100; // Posicion en y
     
     /*
@@ -28,7 +28,7 @@ public class Bandera {
         g2.fillRect (x, y, 5, 20);
         
         // Marco
-        g2.setColor (Color.decode("#D8D8D8"));
+        g2.setColor (Color.gray);
         g2.drawRect(x, y, 20, 20);
     
     }
