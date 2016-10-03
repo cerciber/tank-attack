@@ -1,4 +1,4 @@
-package tankattack;
+package tankattack.clases;
 
 // Librerias
 import java.awt.Color;
@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /* Clase GameLoop que permite:
@@ -22,7 +23,15 @@ public class GameLoop extends JPanel implements Runnable{
     int pausaDeTiempo = 50;   // Peridodo de pausa del gameloop en milisegundos
     
     /* Objetos involucrados */
-    MenuPrincipal menuPrincipal = new MenuPrincipal(); // crear objeto Menu Principal
+    MenuPrincipal menuPrincipal = new MenuPrincipal(this); // crear objeto Menu Principal
+    
+    JFrame frame;
+    
+    public GameLoop(JFrame frame){
+        
+        this.frame = frame;
+        
+    }
     
     /* Metodo para Visualizar graficos a la ventana 
        - Este metodo viene de la clase padre JPanel
@@ -47,7 +56,7 @@ public class GameLoop extends JPanel implements Runnable{
     public void eventos(){
         
         /* Detectar acciones del teclado en la ventana */
-        this.getParent().addKeyListener(new KeyListener() {
+        this.addKeyListener(new KeyListener() {
 
             /* Detectar cuando se tipea una letra */
             @Override
@@ -64,7 +73,7 @@ public class GameLoop extends JPanel implements Runnable{
         });
 
         /* Detectar movimiento del mouse en la ventana */
-        this.getParent().addMouseMotionListener(new MouseMotionListener() {
+        this.addMouseMotionListener(new MouseMotionListener() {
 
             /* Detectar movimiento del mouse arrastrado */
             @Override
@@ -77,7 +86,7 @@ public class GameLoop extends JPanel implements Runnable{
         });
         
         /* Detectar acciones del mouse en la ventana */
-        this.getParent().addMouseListener(new MouseListener() {
+        this.addMouseListener(new MouseListener() {
 
             /* Detectar click del mouse */
             @Override

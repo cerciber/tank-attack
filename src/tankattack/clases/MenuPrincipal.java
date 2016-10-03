@@ -1,11 +1,16 @@
 
-package tankattack;
+package tankattack.clases;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class MenuPrincipal  {
+    
+    // Clase padre
+    GameLoop gameLoop;
     
     // Propiedades de fondo
     int ancho = 800;
@@ -25,12 +30,25 @@ public class MenuPrincipal  {
     int entrarY = 300;
     int entrarTamano = 60;
     
+    // Imagen de fondo
+    Image fondo = new ImageIcon(this
+            .getClass()
+            .getResource("/tankattack/imagenes/menuprinicipal/Fondo.jpg"))
+            .getImage();
     
+    /* Metodo constructor */
+    public MenuPrincipal(GameLoop gameLoop){
+        
+        /* Asignar clase padre */
+        this.gameLoop = gameLoop;
+        
+    }
+    
+    /* Pintar en pantalla */
     public void paint(Graphics2D g){
         
         // Pintar fondo
-        g.setColor (Color.BLACK);
-        g.fillRect(0, 0, ancho, alto);
+        g.drawImage (fondo, 0, 0, ancho, alto, null);
         
         // Pintar titulo
         g.setColor(Color.WHITE);

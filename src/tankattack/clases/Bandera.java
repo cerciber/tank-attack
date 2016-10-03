@@ -1,4 +1,4 @@
-package tankattack;
+package tankattack.clases;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

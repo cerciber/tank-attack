@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tankattack;
+package tankattack.clases;
 
 /**
  *
  * @author cesar
  */
-public class ModosDeJuego {
+public class VS2Player {
     
 }

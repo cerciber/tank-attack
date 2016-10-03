@@ -1,4 +1,4 @@
-package tankattack;
+package tankattack.clases;
 
 // Librerias
 import javax.swing.JFrame;
@@ -20,16 +20,17 @@ public class TankAttack {
         frame.setSize(800,600); // Establecer altra y ancho
         frame.setResizable(false);  // Desactivar redimecionamiento de la ventana
         frame.setLocationRelativeTo(null);  // Ubicar en el centro de la pantalla al inicarse
-        frame.setVisible(true);  // Mostrar ventana en la pantalla
         
         /* Crear objeto GameLoop */ 
-        Runnable gameloop = new GameLoop();
+        Runnable gameloop = new GameLoop(frame);
         
         /* Crear un hilo para ejecutar el objeto GameLoop */
         new Thread(gameloop).start();
         
         // Añadir Gameloop a la ventana como Panel
         frame.add((JPanel)gameloop);
+        
+        frame.setVisible(true);  // Mostrar ventana en la pantalla
         
     }
     
