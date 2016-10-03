@@ -13,27 +13,29 @@ public class MenuPrincipal  {
     GameLoop gameLoop;
     
     // Propiedades de fondo
-    int ancho = 800;
-    int alto = 600;    
-    
-    // Propiedades texto
-    String familia = "Calibri";
-    int tipoDeLetra = Font.BOLD;
-    
-    // Propiedades de titulo
-    int tituloX = 165;
-    int tituloY = 185;
-    int tituloTamano = 80;
-    
-    // Propiedades de Entrar
-    int entrarX = 220;
-    int entrarY = 300;
-    int entrarTamano = 60;
-    
-    // Imagen de fondo
     Image fondo = new ImageIcon(this
             .getClass()
             .getResource("/tankattack/imagenes/menuprinicipal/Fondo.jpg"))
+            .getImage();
+    
+    // Propiedades de titulo
+    int tituloX = 130;
+    int tituloY = 20;
+    int tituloW = 550;
+    int tituloH = 100;
+    Image titulo = new ImageIcon(this
+            .getClass()
+            .getResource("/tankattack/imagenes/menuprinicipal/Titulo.png"))
+            .getImage();
+    
+    // Propiedades de Entrar
+    int enterX = 350;
+    int enterY = 300 - 25;
+    int enterW = 100;
+    int enterH = 50;
+    Image enter = new ImageIcon(this
+            .getClass()
+            .getResource("/tankattack/imagenes/menuprinicipal/Enter.png"))
             .getImage();
     
     /* Metodo constructor */
@@ -48,17 +50,13 @@ public class MenuPrincipal  {
     public void paint(Graphics2D g){
         
         // Pintar fondo
-        g.drawImage (fondo, 0, 0, ancho, alto, null);
+        g.drawImage (fondo, 0, 0, gameLoop.getWidth(), gameLoop.getHeight(), null);
         
         // Pintar titulo
-        g.setColor(Color.WHITE);
-        g.setFont(new Font(familia, tipoDeLetra, tituloTamano));
-        g.drawString("TANK ATTACK", tituloX, tituloY);
+        g.drawImage (titulo, tituloX, tituloY, tituloW, tituloH, null);
         
-        // Pintar Entrar
-        g.setColor(Color.WHITE);
-        g.setFont(new Font(familia, tipoDeLetra, entrarTamano));
-        g.drawString("Presiona Enter", entrarX, entrarY);
+        // Pintar Enter
+        g.drawImage (enter, enterX, enterY, enterW, enterH, null);
         
     }
     
