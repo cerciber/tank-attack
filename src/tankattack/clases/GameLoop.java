@@ -19,14 +19,16 @@ import javax.swing.JPanel;
 */
 public class GameLoop extends JPanel implements Runnable{
     
-    /* Variables globales */
-    int pausaDeTiempo = 50;   // Peridodo de pausa del gameloop en milisegundos
+    /* Objeto contenedor */
+    JFrame frame;
     
     /* Objetos involucrados */
     MenuPrincipal menuPrincipal = new MenuPrincipal(this); // crear objeto Menu Principal
     
-    JFrame frame;
+    /* Variables globales */
+    int pausaDeTiempo = 50;   // Peridodo de pausa del gameloop en milisegundos
     
+    /* Metodo constructor */
     public GameLoop(JFrame frame){
         
         this.frame = frame;
