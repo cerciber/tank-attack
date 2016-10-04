@@ -58,7 +58,7 @@ public class GameLoop extends JPanel implements Runnable{
     public void eventos(){
         
         /* Detectar acciones del teclado en la ventana */
-        this.addKeyListener(new KeyListener() {
+        frame.addKeyListener(new KeyListener() {
 
             /* Detectar cuando se tipea una letra */
             @Override
@@ -66,7 +66,11 @@ public class GameLoop extends JPanel implements Runnable{
 
             /* Detectar cuando se presiona una letra */
             @Override
-            public void keyPressed(KeyEvent ke) {}
+            public void keyPressed(KeyEvent ke) {
+            
+                menuPrincipal.eventos(ke);
+            
+            }
 
             /* Detectar cuando se suelta una letra */
             @Override
@@ -92,7 +96,11 @@ public class GameLoop extends JPanel implements Runnable{
 
             /* Detectar click del mouse */
             @Override
-            public void mouseClicked(MouseEvent me) {}
+            public void mouseClicked(MouseEvent me) {
+            
+                menuPrincipal.eventos(me);
+            
+            }
 
             /* Detectar cuando se presiona una tecla del mouse */
             @Override

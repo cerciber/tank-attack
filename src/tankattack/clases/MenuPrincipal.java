@@ -1,10 +1,9 @@
-
 package tankattack.clases;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 
 public class MenuPrincipal  {
@@ -29,10 +28,11 @@ public class MenuPrincipal  {
             .getImage();
     
     // Propiedades de Entrar
-    int enterX = 350;
+    int enterX = 325;
     int enterY = 300 - 25;
-    int enterW = 100;
+    int enterW = 150;
     int enterH = 50;
+    boolean dibujar = true;
     Image enter = new ImageIcon(this
             .getClass()
             .getResource("/tankattack/imagenes/menuprinicipal/Enter.png"))
@@ -56,7 +56,27 @@ public class MenuPrincipal  {
         g.drawImage (titulo, tituloX, tituloY, tituloW, tituloH, null);
         
         // Pintar Enter
-        g.drawImage (enter, enterX, enterY, enterW, enterH, null);
+        if(dibujar) g.drawImage (enter, enterX, enterY, enterW, enterH, null);
+        
+    }
+    
+    /* Eventos */
+    public void eventos(MouseEvent me){
+        
+        if(me.getX() >= enterX 
+                && me.getX() <= enterX + enterW
+                && me.getY() >= enterY 
+                && me.getY() <= enterY + enterH) {
+            
+            dibujar = false;
+            
+        }
+        
+    }
+    
+    public void eventos(KeyEvent ke){
+        
+        if(ke.getKeyCode() == KeyEvent.VK_ENTER) dibujar = false;        
         
     }
     
