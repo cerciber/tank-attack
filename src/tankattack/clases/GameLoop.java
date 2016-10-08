@@ -54,7 +54,7 @@ public class GameLoop extends JPanel implements Runnable{
         pantallaDePresentacion.paint(g2);
         
         // Pintar Tanque
-        tank.paint(g2);
+        // tank.paint(g2);
         
     }
     
@@ -73,7 +73,7 @@ public class GameLoop extends JPanel implements Runnable{
             public void keyPressed(KeyEvent ke) {
                 
                 pantallaDePresentacion.eventos(ke);
-                tank.eventos(ke);
+                //tank.eventos(ke);
 
             }
 
@@ -130,7 +130,8 @@ public class GameLoop extends JPanel implements Runnable{
     // Metodo para actualizar información del juego
     public void actualizar(){
     
-        System.out.println("hola");
+        // Actualizar pantalla De Presentacion
+        pantallaDePresentacion.actualizar();
         
     }
 
