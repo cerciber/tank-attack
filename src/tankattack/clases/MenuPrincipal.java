@@ -50,10 +50,10 @@ public class MenuPrincipal  {
     public void paint(Graphics2D g){
         
         // Pintar fondo
-        if (dibujar) g.drawImage (fondo, 0, 0, gameLoop.getWidth(), gameLoop.getHeight(), null);
+        g.drawImage (fondo, 0, 0, gameLoop.getWidth(), gameLoop.getHeight(), null);
         
         // Pintar titulo
-        if (dibujar) g.drawImage (titulo, tituloX, tituloY, tituloW, tituloH, null);
+        g.drawImage (titulo, tituloX, tituloY, tituloW, tituloH, null);
         
         // Pintar Enter
         if (dibujar) g.drawImage (enter, enterX, enterY, enterW, enterH, null);

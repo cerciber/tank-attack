@@ -129,6 +129,8 @@ public class GameLoop extends JPanel implements Runnable{
     // Metodo para actualizar información del juego
     public void actualizar(){
     
+        
+        
     }
 
     // Metodo para pausar el hilo por un periodo de tiempo determinado
