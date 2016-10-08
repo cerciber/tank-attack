@@ -50,7 +50,8 @@ public class MenuPrincipal  {
     public void paint(Graphics2D g){
         
         // Pintar fondo
-        g.drawImage (fondo, 0, 0, gameLoop.getWidth(), gameLoop.getHeight(), null);
+        g.drawImage (fondo, 0, 0, gameLoop.getWidth(), 
+                gameLoop.getHeight(), null);
         
         // Pintar titulo
         g.drawImage (titulo, tituloX, tituloY, tituloW, tituloH, null);
@@ -76,7 +77,7 @@ public class MenuPrincipal  {
     
     public void eventos(KeyEvent ke){
         
-        if(ke.getKeyCode() == KeyEvent.VK_ENTER) dibujar = false;        
+        if(ke.getKeyCode() == KeyEvent.VK_ENTER) dibujar = !dibujar;        
         
     }
     
