@@ -14,10 +14,6 @@ public class MenuPrincipal {
     int tituloY = 20;
     int tituloW = 500;
     int tituloH = 100;
-    Image titulo = new ImageIcon(this
-            .getClass()
-            .getResource("/tankattack/imagenes/menuPrinicipal/Modalidad.png"))
-            .getImage();
     
     // Propiedades de item1
     int item1X;
@@ -54,7 +50,7 @@ public class MenuPrincipal {
                 pantallaDePresentacion.gameLoop.getHeight(), null);
         
         // Pintar titulo
-        g.drawImage (titulo, tituloX, tituloY, tituloW, tituloH, null);
+        g.drawImage (pantallaDePresentacion.titulo, tituloX, tituloY, tituloW, tituloH, null);
         
         // Pintar item1
         g.drawImage (item1, 
