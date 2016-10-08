@@ -70,12 +70,7 @@ public class GameLoop extends JPanel implements Runnable{
             public void keyPressed(KeyEvent ke) {
                 menuPrincipal.eventos(ke);
                 tank.eventos(ke);
-//                int x;
-//                int y;
-//                x=tank.CoordX();
-//                y=tank.CoordY();
-//                String Direccion="tankattack/imagenes/tanque/TankUP.png";
-//                tank.paint(null, x, y, Direccion);
+
             }
 
             /* Detectar cuando se suelta una letra */
