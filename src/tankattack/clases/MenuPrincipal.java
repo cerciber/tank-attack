@@ -76,9 +76,10 @@ public class MenuPrincipal  {
     
     public void eventos(KeyEvent ke){
         
-        if(ke.getKeyCode() == KeyEvent.VK_ENTER) 
-            dibujar = false;  
-           
+
+        if(ke.getKeyCode() == KeyEvent.VK_ENTER) dibujar = !dibujar;        
+        
+
     }
     
 }
