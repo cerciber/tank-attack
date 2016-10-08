@@ -15,10 +15,10 @@ public class Tanque /*extends GameLoop*/ {
    ImageIcon Tank = new ImageIcon(this
             .getClass()
             .getResource("/tankattack/imagenes/menuprinicipal/Fondo.jpg"));
-    public Tanque(GameLoop gameLoop) {
-        
-       this.gameLoop = gameLoop;
-    }
+//    public Tanque(GameLoop gameLoop) {
+//        
+//       this.gameLoop = gameLoop;
+//    }
 
     public void paint(Graphics2D g) {
         g.drawImage(Tank, CoordX(), CoordY(), gameLoop);
