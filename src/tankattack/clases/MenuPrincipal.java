@@ -16,7 +16,7 @@ public class MenuPrincipal {
     int tituloH = 100;
     Image titulo = new ImageIcon(this
             .getClass()
-            .getResource("/tankattack/imagenes/menuPrinicipal/Titulo.png"))
+            .getResource("/tankattack/imagenes/menuPrinicipal/Modalidad.png"))
             .getImage();
     
     // Propiedades de item1
@@ -26,7 +26,7 @@ public class MenuPrincipal {
     int item1H = 50;
     Image item1 = new ImageIcon(this
             .getClass()
-            .getResource("/tankattack/imagenes/menuPrinicipal/Item1.png"))
+            .getResource("/tankattack/imagenes/menuPrinicipal/VS2Player.png"))
             .getImage();
     
     // Propiedades de item2
@@ -36,7 +36,7 @@ public class MenuPrincipal {
     int item2H = 50;
     Image item2 = new ImageIcon(this
             .getClass()
-            .getResource("/tankattack/imagenes/menuPrinicipal/Item2.png"))
+            .getResource("/tankattack/imagenes/menuPrinicipal/Configuracion.png"))
             .getImage();
     
     public MenuPrincipal(PantallaDePresentacion p){
