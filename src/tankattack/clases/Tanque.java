@@ -9,18 +9,19 @@ import javax.swing.ImageIcon;
 
 public class Tanque /*extends GameLoop*/ {
     GameLoop gameLoop;
-    int x=0;
-    int y=0;
+    int x;
+    int y;
    Image Tank = new ImageIcon(this
             .getClass()
             .getResource("/tankattack/imagenes/tanque/TankUP.png")).getImage();
+   
     public Tanque(GameLoop gameLoop) {
         
        this.gameLoop = gameLoop;
     }
 
     public void paint(Graphics2D g) {
-        g.drawImage(Tank, x, y, null);
+        g.drawImage(Tank, x, y, 50, 50, null);
       
         
     }

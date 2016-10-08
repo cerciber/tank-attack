@@ -57,7 +57,7 @@ public class MenuPrincipal  {
         
         // Pintar Enter
         if (dibujar) g.drawImage (enter, enterX, enterY, enterW, enterH, null);
-        
+
     }
     
     /* Eventos */

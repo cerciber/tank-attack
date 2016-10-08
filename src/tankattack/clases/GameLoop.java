@@ -53,6 +53,9 @@ public class GameLoop extends JPanel implements Runnable{
         // Pintar menu Principal
         menuPrincipal.paint(g2);
         
+        // Pintar Tanque
+        tank.paint(g2);
+        
     }
     
     /* Metodo para gestionar acciones del mouse y el teclado */
