@@ -77,13 +77,21 @@ public class PantallaDePresentacion {
     /* Eventos */
     public void eventos(MouseEvent me){
         
-        // Entrar al menu principal
-        if(me.getX() >= enterX 
-                && me.getX() <= enterX + enterW
-                && me.getY() >= enterY 
-                && me.getY() <= enterY + enterH) {
+        if(!cambiarPantalla){
             
-            cambiarPantalla = true;
+            // Entrar al menu principal
+            if(me.getX() >= enterX 
+                    && me.getX() <= enterX + enterW
+                    && me.getY() >= enterY 
+                    && me.getY() <= enterY + enterH) {
+
+                cambiarPantalla = true;
+
+            }
+            
+        } else {
+            
+            menuPrincipal.eventos(me);
             
         }
         
