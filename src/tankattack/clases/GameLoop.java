@@ -15,24 +15,25 @@ import javax.swing.JPanel;
 /* Clase GameLoop que permite:
     - Visualizar graficos a la ventana
     - Reponder a eventos del mouse y el teclado
-    - Actualizar infomracion cada periodo de tiempo
+    - Actualizar informacion cada periodo de tiempo
 */
 public class GameLoop extends JPanel implements Runnable{
     
     /* Objeto contenedor */
-    JFrame frame;
+    protected JFrame frame;
     
     /* Objetos involucrados */
     MenuPrincipal menuPrincipal = new MenuPrincipal(this); // crear objeto Menu Principal
-    
+    //Creacion del objeto tank
+    Tanque tank = new Tanque (this);
     /* Variables globales */
     int pausaDeTiempo = 50;   // Peridodo de pausa del gameloop en milisegundos
     
     /* Metodo constructor */
     public GameLoop(JFrame frame){
-        
-        this.frame = frame;
-        
+       
+       this.frame = frame;
+       
     }
     
     /* Metodo para Visualizar graficos a la ventana 
@@ -67,9 +68,14 @@ public class GameLoop extends JPanel implements Runnable{
             /* Detectar cuando se presiona una letra */
             @Override
             public void keyPressed(KeyEvent ke) {
-            
                 menuPrincipal.eventos(ke);
-            
+                tank.eventos(ke);
+//                int x;
+//                int y;
+//                x=tank.CoordX();
+//                y=tank.CoordY();
+//                String Direccion="tankattack/imagenes/tanque/TankUP.png";
+//                tank.paint(null, x, y, Direccion);
             }
 
             /* Detectar cuando se suelta una letra */
