@@ -11,17 +11,19 @@ public class Tanque /*extends GameLoop*/ {
     GameLoop gameLoop;
     int x;
     int y;
-   Image Tank = new ImageIcon(this
+    
+    Image TankUP = new ImageIcon(this
             .getClass()
             .getResource("/tankattack/imagenes/tanque/TankUP.png")).getImage();
    
     public Tanque(GameLoop gameLoop) {
         
        this.gameLoop = gameLoop;
+       
     }
 
     public void paint(Graphics2D g) {
-        g.drawImage(Tank, x, y, 50, 50, null);
+        g.drawImage(TankUP, x, y, 50, 50, null);
       
         
     }
@@ -37,6 +39,7 @@ public class Tanque /*extends GameLoop*/ {
         switch(ke.getKeyCode()) {
             case  KeyEvent.VK_UP:
                 x=x+10;
+
             break;
             case  KeyEvent.VK_DOWN:
                 x=x-10;

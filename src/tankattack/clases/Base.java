@@ -9,6 +9,6 @@ package tankattack.clases;
  *
  * @author cesar
  */
-public class ModosDeJuego {
+public class Base {
     
 }

@@ -23,9 +23,9 @@ public class GameLoop extends JPanel implements Runnable{
     protected JFrame frame;
     
     /* Objetos involucrados */
-    MenuPrincipal menuPrincipal = new MenuPrincipal(this); // crear objeto Menu Principal
-    //Creacion del objeto tank
-    Tanque tank = new Tanque (this);
+    PantallaDePresentacion pantallaDePresentacion = new PantallaDePresentacion(this); // crear objeto Menu Principal
+    Tanque tank = new Tanque (this); //Crear del objeto tanque
+    
     /* Variables globales */
     int pausaDeTiempo = 50;   // Peridodo de pausa del gameloop en milisegundos
     
@@ -51,7 +51,7 @@ public class GameLoop extends JPanel implements Runnable{
         g2.fillRect(0, 0, this.getWidth(), this.getWidth());
         
         // Pintar menu Principal
-        menuPrincipal.paint(g2);
+        pantallaDePresentacion.paint(g2);
         
         // Pintar Tanque
         tank.paint(g2);
@@ -71,7 +71,8 @@ public class GameLoop extends JPanel implements Runnable{
             /* Detectar cuando se presiona una letra */
             @Override
             public void keyPressed(KeyEvent ke) {
-                menuPrincipal.eventos(ke);
+                
+                pantallaDePresentacion.eventos(ke);
                 tank.eventos(ke);
 
             }
@@ -102,7 +103,7 @@ public class GameLoop extends JPanel implements Runnable{
             @Override
             public void mouseClicked(MouseEvent me) {
             
-                menuPrincipal.eventos(me);
+                pantallaDePresentacion.eventos(me);
             
             }
 
@@ -129,7 +130,7 @@ public class GameLoop extends JPanel implements Runnable{
     // Metodo para actualizar información del juego
     public void actualizar(){
     
-        
+        System.out.println("hola");
         
     }
 
