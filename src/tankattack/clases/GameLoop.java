@@ -4,11 +4,13 @@ package tankattack.clases;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -24,7 +26,8 @@ public class GameLoop extends JPanel implements Runnable{
     
     /* Objetos involucrados */
     PantallaDePresentacion pantallaDePresentacion = new PantallaDePresentacion(this); // crear objeto Menu Principal
-    Tanque tank = new Tanque (this); //Crear del objeto tanque
+    Tanque tank = new Tanque (this); //Creacion del objeto tanque
+    Bala bala = new Bala (this);//Creacion del objeto bala
     
     /* Variables globales */
     int pausaDeTiempo = 50;   // Peridodo de pausa del gameloop en milisegundos
@@ -55,7 +58,10 @@ public class GameLoop extends JPanel implements Runnable{
         
         // Pintar Tanque
         tank.paint(g2);
-        
+        bala.paint(g2);
+         
+     
+        //bala.proyectiles();
     }
     
     /* Metodo para gestionar acciones del mouse y el teclado */
@@ -74,7 +80,9 @@ public class GameLoop extends JPanel implements Runnable{
                 
                 pantallaDePresentacion.eventos(ke);
                 tank.eventos(ke);
-
+                bala.eventos(ke);
+                
+                
             }
 
             /* Detectar cuando se suelta una letra */
@@ -126,12 +134,18 @@ public class GameLoop extends JPanel implements Runnable{
         });
         
     } 
-    
+    static int z;
+    //ArrayList <Bala> ArrayBalas= new ArrayList <> ();
     // Metodo para actualizar información del juego
     public void actualizar(){
     
-        System.out.println("hola");
-        
+    if(Bala.press==true){
+        //ArrayBalas.add(bala);
+        if(this.getWidth()>z){z+=10;
+        System.out.println("Valor de z="+z);
+    }else {System.out.println("Finalizando bala...");}}
+    
+    
     }
 
     // Metodo para pausar el hilo por un periodo de tiempo determinado
