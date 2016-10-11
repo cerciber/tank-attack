@@ -7,11 +7,13 @@ import javax.swing.ImageIcon;
 public class Bala {
     GameLoop gameLoop;
     Image Bala;
-    protected int x,y,direccion,aux;
+    protected int x,y;
+    private final int direccion;
     private int SPEEDX;
     private int SPEEDY;
+    private final int SPEEDFINAL=10;
     private boolean visible;
-    
+   
     
     public Bala(GameLoop gameLoop, int x, int y,int direcc) {
              Bala = new ImageIcon(this
@@ -23,6 +25,7 @@ public class Bala {
             this.y=y;
             this.direccion=direcc;
             choice();
+           
         }
     
     public int getX(){
@@ -48,35 +51,19 @@ public class Bala {
         //aux=choice();
         y+= SPEEDY;
         x+=SPEEDX;
-        if(aux>Tanque.BordeInferior||aux>Tanque.BordeSuperior||aux>Tanque.BordeDerecho||aux>Tanque.BordeIzquierdo) visible = false;
+        if(y>Tanque.BordeInferior||y<Tanque.BordeSuperior||x>Tanque.BordeDerecho||x<Tanque.BordeIzquierdo) visible = false;
     }
   public final void choice(){
-        if(direccion==1){SPEEDX=0;SPEEDY=-5;}
-        if(direccion==2){SPEEDX=0;SPEEDY=5;}
-        if(direccion==3){SPEEDX=-5;SPEEDY=0;}
-        if(direccion==4){SPEEDX=5;SPEEDY=0;}
+        if(direccion==1){SPEEDX=0;SPEEDY=-SPEEDFINAL;}//px=16;py=-15;}
+        if(direccion==2){SPEEDX=0;SPEEDY=SPEEDFINAL;}//px=16;py=45;}
+        if(direccion==3){SPEEDX=-SPEEDFINAL;SPEEDY=0;}//px=-15;py=15;}
+        if(direccion==4){SPEEDX=SPEEDFINAL;SPEEDY=0;}//px=45;py=10;}
         if(direccion==0){this.visible=false;}
     }
-  
-//  public void updateArriba(){
-//      y -= SPEED;
-//      if(y>Tanque.BordeInferior) visible = false;
-//    }
-//
-//    public void updateAbajo(){
-//       y += SPEED;
-//       if(y>Tanque.BordeInferior) visible = false;
-//    }
-//    public  void updateDerecha(){
-//        x -= SPEED;
-//        if(y>Tanque.BordeInferior) visible = false;
-//    }
-//    
-//    public void updateIzquierda(){
-//        x += SPEED;
-//        if(y>Tanque.BordeInferior) visible = false;
-//    }
     
+  public int getdir(){
+      return direccion;
+  }
     
 }
     
