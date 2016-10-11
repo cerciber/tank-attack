@@ -1,26 +1,19 @@
 package tankattack.clases;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+
 
 public class Bala {
     GameLoop gameLoop;
     Image Bala;
-    protected int x,y;
-    private final int SPEED = 5;
+    protected int x,y,direccion,aux;
+    private int SPEEDX;
+    private int SPEEDY;
     private boolean visible;
-    //ArrayList <Bala> ArrayBalas= new ArrayList <> ();  
     
-    public Bala(GameLoop gameLoop, int x, int y) {
+    
+    public Bala(GameLoop gameLoop, int x, int y,int direcc) {
              Bala = new ImageIcon(this
             .getClass()
             .getResource("/tankattack/imagenes/tanque/bala.png")).getImage();
@@ -28,8 +21,9 @@ public class Bala {
             visible=true;
             this.x=x;
             this.y=y;
-            
-        }//gameLoop.repaint();
+            this.direccion=direcc;
+            choice();
+        }
     
     public int getX(){
       return x;
@@ -50,85 +44,40 @@ public class Bala {
   public void setVisible(boolean visible){
       this.visible = visible;
   }
-
   public void update(){
-      y += SPEED;
-      if(y>210) visible = false;
+        //aux=choice();
+        y+= SPEEDY;
+        x+=SPEEDX;
+        if(aux>Tanque.BordeInferior||aux>Tanque.BordeSuperior||aux>Tanque.BordeDerecho||aux>Tanque.BordeIzquierdo) visible = false;
     }
-
-    Image Dibujo2;
-
-    public void paint(Graphics2D g){
-        //if(Tanque.Orientacion==4){
-             //Graphics2D g2d = (Graphics2D)g;
-            System.out.println("Bala impresa= "+Tanque.n);
-            
-            if(Tanque.Press){
-                x+=moverabajo();
-                y+=moverabajo();
-             
-                for (int j=0;j<Tanque.i;j++){
-                    g.drawImage(Bala, x,y, 20,20,null);}
-            }
-            
-       // }
-//        if(Tanque.Orientacion==2){
-//            
-//           y+=moverabajo();
-//            if(Tanque.Press)g.drawImage(Bala, x,y, 20,20,null);
-//        }
-        
-        
+  public final void choice(){
+        if(direccion==1){SPEEDX=0;SPEEDY=-5;}
+        if(direccion==2){SPEEDX=0;SPEEDY=5;}
+        if(direccion==3){SPEEDX=-5;SPEEDY=0;}
+        if(direccion==4){SPEEDX=5;SPEEDY=0;}
+        if(direccion==0){this.visible=false;}
     }
+  
+//  public void updateArriba(){
+//      y -= SPEED;
+//      if(y>Tanque.BordeInferior) visible = false;
+//    }
+//
+//    public void updateAbajo(){
+//       y += SPEED;
+//       if(y>Tanque.BordeInferior) visible = false;
+//    }
+//    public  void updateDerecha(){
+//        x -= SPEED;
+//        if(y>Tanque.BordeInferior) visible = false;
+//    }
+//    
+//    public void updateIzquierda(){
+//        x += SPEED;
+//        if(y>Tanque.BordeInferior) visible = false;
+//    }
     
-    public int moverabajo(){
-        //System.out.println("Aumentar 10 x");    
-        int v=5;
-        
-        return v;
-         
-    }
-    public final void aumentarx(){
-      
-    }
     
-    public int mostrarx(){
-        return x;
-    }
-    public int mostrary(){
-        return y;
-    }
-            
-    //static boolean press=false;
-    public void eventos(KeyEvent ke){
-//      int Orientacion=Tanque.Sentido();
-//            if(ke.getKeyCode()==KeyEvent.VK_NUMPAD0){
-//            //press=true; 
-//           
-//            System.out.println("Orientacion "+Orientacion);
-//            //this.proyectiles();
-           
-            //Dibujo2=ArrayBalas.get(y);
-                       
-            
-//             switch(Orientacion){
-//                    case 1 :
-//                       Dibujo2=BulletUP;
-//                        System.out.println("Orientacion ");
-////                        x=Tanque.x;
-////                        y=Tanque.y;
-//                    break; 
-//                    case 2:
-//                        Dibujo2=BulletDOWN;
-//                    break; 
-//                    case 3:
-//                        Dibujo2=BulletLEFT;
-//                       
-//                    break; 
-//                    case 4:
-//                        Dibujo2=BulletRIGHT;
-//                    break; 
-             }
-        }
-    //}
+}
+    
 
