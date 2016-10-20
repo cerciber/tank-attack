@@ -89,7 +89,7 @@ public class Tanque {
                 //ArrayBalas.add(new Bala(gameLoop,x,y,Orientacion));
                 //ArrayBalas.get(v).mover();
                 //bala.mover();
-                balas.add(new Bala(gameLoop,x + TankUP.getWidth(null)/2, y));
+                //balas.add(new Bala(gameLoop,x + TankUP.getWidth(null)/2, y));
                 Press=true;
                 Moverbala();
                 gameLoop.repaint();

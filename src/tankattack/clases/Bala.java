@@ -51,7 +51,7 @@ public class Bala {
         //aux=choice();
         y+= SPEEDY;
         x+=SPEEDX;
-        if(y>Tanque.BordeInferior||y<Tanque.BordeSuperior||x>Tanque.BordeDerecho||x<Tanque.BordeIzquierdo) visible = false;
+        //if(y>Tanque.BordeInferior||y<Tanque.BordeSuperior||x>Tanque.BordeDerecho||x<Tanque.BordeIzquierdo) visible = false;
     }
   public final void choice(){
         if(direccion==1){SPEEDX=0;SPEEDY=-SPEEDFINAL;}//px=16;py=-15;}
