@@ -63,7 +63,7 @@ public class Configuracion {
         
         if(volver.click(me)){
             
-            menuPrincipal.cambiarPantalla = false;
+            menuPrincipal.cambiarPantalla = 0;
             
         }  
         

@@ -11,7 +11,6 @@ public class PantallaDePresentacion {
     
     /* Objetos involucrados */
     MenuPrincipal menuPrincipal = new MenuPrincipal(this);
-    Muro muro = new Muro(100, 100, "agua");
     
     /* Cambiar pantalla */
     boolean cambiarPantalla = false;
@@ -46,7 +45,6 @@ public class PantallaDePresentacion {
             enter.paint(g);  // Pintar Enter
             
         }
-        muro.paint(g);
 
     }
     
