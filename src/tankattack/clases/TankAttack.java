@@ -17,7 +17,7 @@ public class TankAttack {
         /* Asignar propiedades de ventana */
         frame.setTitle("Tank Attack");  // Estblecer titulo
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);    //  Finalizar programa al cerrar la ventana
-        frame.setSize(800,600); // Establecer altra y ancho
+        frame.setSize(808,630); // Establecer altra y ancho
         frame.setResizable(false);  // Desactivar redimecionamiento de la ventana
         frame.setLocationRelativeTo(null);  // Ubicar en el centro de la pantalla al inicarse
         

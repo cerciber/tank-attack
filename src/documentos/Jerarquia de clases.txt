@@ -4,9 +4,11 @@
       - Menu principal
         - VS2Player
           - Esenario
-            - Tanke
-            - Bala
-            - Bandera
-            - Muro
-            - Base
+            - Marcador
+            - Tablero
+                - Tanke
+                - Bala
+                - Bandera
+                - Muro
+                - Base
         - Configuracion
