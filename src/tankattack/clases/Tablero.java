@@ -63,10 +63,10 @@ public final class Tablero {
             }
         }
         
-        base1.paint(g);
-        base2.paint(g);
         tanque1.paint(g);
         tanque2.paint(g);
+        base1.paint(g);
+        base2.paint(g);
         bandera1.paint(g);
         bandera2.paint(g);
 
