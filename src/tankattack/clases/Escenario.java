@@ -8,6 +8,10 @@ public class Escenario {
     /* Objeto contenedor */
     MenuPrincipal menuPrincipal;
     
+    /* Objetos involucrados */
+    Tablero tablero = new Tablero(this);
+    Marcador marcador = new Marcador(this);
+    
     public Escenario(MenuPrincipal m){
         
         menuPrincipal = m;
@@ -17,14 +21,8 @@ public class Escenario {
     public void paint(Graphics2D g){
     
         menuPrincipal.pantallaDePresentacion.fondo.paint(g);  // Pintar fondo
-        
-        // pintar marco
-        g.setColor(Color.BLACK);
-        g.fillRect(10, 10, 800 - 20, 100 - 20);
-        
-        // pintar tablero
-        g.setColor(Color.BLACK);
-        g.fillRect(10, 10, 800 - 20, 100 - 20);
+        marcador.paint(g);  // Pintar marcador
+        tablero.paint(g);  // Pintar tablero
     
     }
     
