@@ -51,11 +51,14 @@ public class Tanque {
     
         
     Image Dibujo = TankDOWN;
+    
+    int jugador;
    
-    public Tanque(Tablero t) {
+    public Tanque(Tablero t, int j) {
         
        balas = new ArrayList();
        tablero = t;
+       jugador = j;
        
     }
     
@@ -82,42 +85,85 @@ public class Tanque {
     public void eventos(KeyEvent ke){
         
         int pasos = 10;
-       
-        switch(ke.getKeyCode()) {
-            case  KeyEvent.VK_UP:
-                if(y>BordeSuperior){
-                        y=y-pasos;
-                        Dibujo=TankUP;
-                        Orientacion=1;}
-                
-            break;
-            case  KeyEvent.VK_DOWN:
-                if(y<BordeInferior){
-                        y=y+pasos;
-                        Dibujo=TankDOWN;
-                        Orientacion=2;}
-                
-            break;
-            case  KeyEvent.VK_LEFT:
-                if(x>BordeIzquierdo){
-                        x=x-pasos;
-                        Dibujo=TankLEFT;    
-                        Orientacion=3;}
-                
-            break;
-            case  KeyEvent.VK_RIGHT:
-                if(x<BordeDerecho){
-                        x=x+pasos;
-                        Dibujo=TankRIGHT;
-                        Orientacion=4;}
-                
-            break;
-            case KeyEvent.VK_NUMPAD0:
-                balas.add(new Bala(this, x, y, Orientacion));               
-            break;
-        }   //Traza del tanque en x e y
-            //System.out.println("x="+x+"  y="+y+"  "+Orientacion);
+        
+        if(jugador == 1){
+            
+            switch(ke.getKeyCode()) {
+                case  KeyEvent.VK_UP:
+                    if(y>BordeSuperior){
+                            y=y-pasos;
+                            Dibujo=TankUP;
+                            Orientacion=1;}
+
+                break;
+                case  KeyEvent.VK_DOWN:
+                    if(y<BordeInferior){
+                            y=y+pasos;
+                            Dibujo=TankDOWN;
+                            Orientacion=2;}
+
+                break;
+                case  KeyEvent.VK_LEFT:
+                    if(x>BordeIzquierdo){
+                            x=x-pasos;
+                            Dibujo=TankLEFT;    
+                            Orientacion=3;}
+
+                break;
+                case  KeyEvent.VK_RIGHT:
+                    if(x<BordeDerecho){
+                            x=x+pasos;
+                            Dibujo=TankRIGHT;
+                            Orientacion=4;}
+
+                break;
+                case KeyEvent.VK_NUMPAD0:
+                    balas.add(new Bala(this, x, y, Orientacion));               
+                break;
+                    
+            }   
+            
+        } else {
+            
+            switch(ke.getKeyCode()) {
+                case  KeyEvent.VK_W:
+                    if(y>BordeSuperior){
+                            y=y-pasos;
+                            Dibujo=TankUP;
+                            Orientacion=1;}
+
+                break;
+                case  KeyEvent.VK_S:
+                    if(y<BordeInferior){
+                            y=y+pasos;
+                            Dibujo=TankDOWN;
+                            Orientacion=2;}
+
+                break;
+                case  KeyEvent.VK_A:
+                    if(x>BordeIzquierdo){
+                            x=x-pasos;
+                            Dibujo=TankLEFT;    
+                            Orientacion=3;}
+
+                break;
+                case  KeyEvent.VK_D:
+                    if(x<BordeDerecho){
+                            x=x+pasos;
+                            Dibujo=TankRIGHT;
+                            Orientacion=4;}
+
+                break;
+                case KeyEvent.VK_G:
+                    balas.add(new Bala(this, x, y, Orientacion));               
+                break;
+            }   
+            
         }
+        
+            
+            
+    }
     
     public void actualizar(){
       

@@ -21,7 +21,8 @@ public final class Tablero {
     Base base2; 
     Bandera bandera1; 
     Bandera bandera2;
-    Tanque tanque;
+    Tanque tanque1;
+    Tanque tanque2;
     Muro[][] muros;
     
     public Tablero(VS2Player e){
@@ -31,7 +32,8 @@ public final class Tablero {
         base2 = new Base(this, x + 600, y + 400); 
         bandera1 = new Bandera(this, x + 60, y + 60); 
         bandera2 = new Bandera(this,  x + 610, y + 410);
-        tanque = new Tanque(this); 
+        tanque1 = new Tanque(this, 1);
+        tanque2 = new Tanque(this, 2);
         muros = new Muro[14][10];
         asignarMuros(muros);
         
@@ -63,7 +65,8 @@ public final class Tablero {
         
         base1.paint(g);
         base2.paint(g);
-        tanque.paint(g);
+        tanque1.paint(g);
+        tanque2.paint(g);
         bandera1.paint(g);
         bandera2.paint(g);
 
@@ -82,7 +85,8 @@ public final class Tablero {
         
         base1.eventos(me);
         base2.eventos(me);
-        tanque.eventos(me);
+        tanque1.eventos(me);
+        tanque2.eventos(me);
         bandera1.eventos(me);
         bandera2.eventos(me);
         
@@ -101,7 +105,8 @@ public final class Tablero {
         
         base1.eventos(ke);
         base2.eventos(ke);
-        tanque.eventos(ke);
+        tanque1.eventos(ke);
+        tanque2.eventos(ke);
         bandera1.eventos(ke);
         bandera2.eventos(ke);
         
@@ -120,7 +125,8 @@ public final class Tablero {
         
         base1.actualizar();
         base2.actualizar();
-        tanque.actualizar();
+        tanque1.actualizar();
+        tanque2.actualizar();
         bandera1.actualizar();
         bandera2.actualizar();
         
@@ -137,4 +143,5 @@ public final class Tablero {
         }
         
     }
+    
 }
