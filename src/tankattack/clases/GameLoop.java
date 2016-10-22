@@ -4,8 +4,6 @@ package tankattack.clases;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -14,7 +12,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import static tankattack.clases.Tanque.i;
+
 
 /* Clase GameLoop que permite:
     - Visualizar graficos a la ventana
@@ -29,10 +27,7 @@ public class GameLoop extends JPanel implements Runnable{
     /* Objetos involucrados */
     PantallaDePresentacion pantallaDePresentacion = new PantallaDePresentacion(this); // crear objeto Menu Principal
     Tanque tank = new Tanque (this); //Creacion del objeto tanque
-   // ArrayList <Bala> ArrayBalas= new ArrayList <> (); 
-    //Bala bala = new Bala (10,10,10,10,10);//Creacion del objeto bala
-    
-    
+       
     /* Variables globales */
     int pausaDeTiempo = 50;   // Peridodo de pausa del gameloop en milisegundos
     
@@ -62,14 +57,17 @@ public class GameLoop extends JPanel implements Runnable{
        
         // Pintar Tanque
         tank.paint(g2);
-       // bala.paint(g2);
+        
+       // Pintar Array de balas a demanda
         ArrayList balas = tank.getBalas();
-        for(  i=0;i<balas.size();i++){
+        for( int i=0;i<balas.size();i++){
             Bala b = (Bala) balas.get(i);
-            g2.drawImage(b.getImage(), b.getX(), b.getY(), this);
-       // System.out.println("Cantidad Array "+ArrayBalas.size());
-        //System.out.println("Coordenada bala "+i+" "+ArrayBalas.get(i).mostrarx());
-    }
+            //dependiendo del punto al que mire el tanque dibuja la bala en la punta del cañon
+            if(b.getdir()==1)g2.drawImage(b.getImage(), b.getX()+16, b.getY()-15,20,20, this);
+            if(b.getdir()==2)g2.drawImage(b.getImage(), b.getX()+16, b.getY()+45,20,20, this);
+            if(b.getdir()==3)g2.drawImage(b.getImage(), b.getX()-15, b.getY()+15,20,20, this);
+            if(b.getdir()==4)g2.drawImage(b.getImage(), b.getX()+45, b.getY()+10,20,20, this);
+        }
     }
     
     /* Metodo para gestionar acciones del mouse y el teclado */
@@ -88,9 +86,7 @@ public class GameLoop extends JPanel implements Runnable{
                 
                 pantallaDePresentacion.eventos(ke);
                 tank.eventos(ke);
-               // ArrayBalas.get(i).eventos(ke);
-                
-                
+              
             }
 
             /* Detectar cuando se suelta una letra */
@@ -143,25 +139,23 @@ public class GameLoop extends JPanel implements Runnable{
         
     } 
     static int z;
-    static int i=0;
-    //ArrayList <Bala> ArrayBalas= new ArrayList <> ();
-    // Metodo para actualizar información del juego
-    public void actualizar(){
-      tank.Moverbala();
-     
+   // static int i=0;
    
-    }
-    public void actionPerformed(ActionEvent e){
-    
-     ArrayList balas = tank.getBalas();
+    public void actualizar(){
+      //tank.Moverbala();
+      ArrayList balas = tank.getBalas();
+      
         for(int j = 0; j < balas.size(); j++){
             Bala b = (Bala) balas.get(j);
             if(b.isVisible())
                 b.update();
+                
             else
                 balas.remove(j);
         }
+   
     }
+    
     // Metodo para pausar el hilo por un periodo de tiempo determinado
     public void Esperar() {
     

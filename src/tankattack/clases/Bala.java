@@ -54,10 +54,10 @@ public class Bala {
         if(y>Tanque.BordeInferior||y<Tanque.BordeSuperior||x>Tanque.BordeDerecho||x<Tanque.BordeIzquierdo) visible = false;
     }
   public final void choice(){
-        if(direccion==1){SPEEDX=0;SPEEDY=-SPEEDFINAL;}//px=16;py=-15;}
-        if(direccion==2){SPEEDX=0;SPEEDY=SPEEDFINAL;}//px=16;py=45;}
-        if(direccion==3){SPEEDX=-SPEEDFINAL;SPEEDY=0;}//px=-15;py=15;}
-        if(direccion==4){SPEEDX=SPEEDFINAL;SPEEDY=0;}//px=45;py=10;}
+        if(direccion==1){SPEEDX=0;SPEEDY=-SPEEDFINAL;}
+        if(direccion==2){SPEEDX=0;SPEEDY=SPEEDFINAL;}
+        if(direccion==3){SPEEDX=-SPEEDFINAL;SPEEDY=0;}
+        if(direccion==4){SPEEDX=SPEEDFINAL;SPEEDY=0;}
         if(direccion==0){this.visible=false;}
     }
     
