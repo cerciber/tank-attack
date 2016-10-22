@@ -32,8 +32,8 @@ public final class Tablero {
         base2 = new Base(this, x + 600, y + 400); 
         bandera1 = new Bandera(this, x + 60, y + 60); 
         bandera2 = new Bandera(this,  x + 610, y + 410);
-        tanque1 = new Tanque(this, 1);
-        tanque2 = new Tanque(this, 2);
+        tanque1 = new Tanque(this, x + 100, y + 50, 1);
+        tanque2 = new Tanque(this, x + 550, y + 400, 2);
         muros = new Muro[14][10];
         asignarMuros(muros);
         
@@ -139,11 +139,16 @@ public final class Tablero {
 
                 if(i == 1 && j == 1){
                     muros[i][j] = new Muro(this, px, py, 6);
+                } else if(i == 2 && j == 1){
+                    muros[i][j] = new Muro(this, px, py, 6);
                 } else if (i == 12 && j == 8){
+                    muros[i][j] = new Muro(this, px, py, 6);
+                }else if (i == 11 && j == 8){
                     muros[i][j] = new Muro(this, px, py, 6);
                 }else{
                     muros[i][j] = new Muro(this, px, py, (int) (Math.random()*(1-7)+7));
                 }
+                
             }
         }
         

@@ -16,8 +16,8 @@ public class Tanque {
     ArrayList balas;
     
     /* variables globales */
-    int y = 250;
-    int x = 350;
+    int y;
+    int x;
     
     /* Orientacion del tanque */
     // 1 = arriba
@@ -54,10 +54,12 @@ public class Tanque {
     
     int jugador;
    
-    public Tanque(Tablero t, int j) {
+    public Tanque(Tablero t, int x, int y, int j) {
         
        balas = new ArrayList();
        tablero = t;
+       this.x = x;
+       this.y = y;
        jugador = j;
        
     }
