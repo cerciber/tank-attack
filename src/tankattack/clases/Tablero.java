@@ -137,8 +137,13 @@ public final class Tablero {
         for(int i = 0, px = x; i <= 13; i++, px += 50){
             for(int j = 0, py = y; j <= 9; j++, py +=50){
 
-                muros[i][j] = new Muro(this, px, py, (int) (Math.random()*(1-7)+7));
-                
+                if(i == 1 && j == 1){
+                    muros[i][j] = new Muro(this, px, py, 6);
+                } else if (i == 12 && j == 8){
+                    muros[i][j] = new Muro(this, px, py, 6);
+                }else{
+                    muros[i][j] = new Muro(this, px, py, (int) (Math.random()*(1-7)+7));
+                }
             }
         }
         
