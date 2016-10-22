@@ -163,8 +163,6 @@ public class Tanque {
             
         }
         
-            
-            
     }
     
     public void actualizar(){
