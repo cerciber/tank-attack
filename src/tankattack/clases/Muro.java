@@ -15,6 +15,7 @@ public class Muro {
     // 3 : "acero"
     // 4 : "agua"
     // 5 : "hollo"
+    // 6 : "suelo"
     int tipo;
     
     int resistencia;    // Resistencia a las balas
