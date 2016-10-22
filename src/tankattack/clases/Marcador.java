@@ -3,26 +3,29 @@ package tankattack.clases;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class Marcador {
     
     /* Objeto contenedor */
-    Escenario escenario;
+    VS2Player escenario;
     
+    /* variables globales */
     int x = 10;
     int y = 10;
     int w = 800 - 20;
     int h = 100 - 20;
     
+    /* Fuente texto */
     Font fuente = new Font ("Helvetica", Font.BOLD, 12);
     
-    public Marcador(Escenario e){
+    public Marcador(VS2Player e){
         
         escenario = e;
         
     }
     
-        
     public void paint(Graphics2D g){
         
         // pintar marco
@@ -36,6 +39,19 @@ public class Marcador {
         g.drawString("Jugador 2", x + w - 30 - g.getFontMetrics()
                 .stringWidth("Jugador 2"), y + g.getFontMetrics().getAscent() + 30);
          
+    }
+    
+    public void eventos(MouseEvent me){
+        
+    }
+    
+    public void eventos(KeyEvent ke){
+    
+    }
+    
+    public void actualizar(){
+    
+    
     }
     
 }

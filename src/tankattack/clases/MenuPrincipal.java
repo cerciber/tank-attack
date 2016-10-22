@@ -10,8 +10,8 @@ public class MenuPrincipal {
     PantallaDePresentacion pantallaDePresentacion;
     
     /* Objetos involucrados */
-    Configuracion configuracion = new Configuracion(this);
-    Escenario escenario = new Escenario(this);
+    Configuracion configuracion;
+    VS2Player vs2Player;
     
     /* Cambiar pantalla */
     // 0 = Permanecer
@@ -42,7 +42,7 @@ public class MenuPrincipal {
                 textoConfiguracion.paint(g);  // Pintar texto Configuracion
                 break;
             case 1:
-                escenario.paint(g);
+                vs2Player.paint(g);
                 break;
             case 2:
                 configuracion.paint(g);
@@ -56,13 +56,15 @@ public class MenuPrincipal {
         switch(cambiarPantalla){
             case 0:
                 if(textoVS2Player.click(me)){
+                    vs2Player = new VS2Player(this);
                     cambiarPantalla = 1;
                 } else if(textoConfiguracion.click(me)){
+                    configuracion = new Configuracion(this);
                     cambiarPantalla = 2;
                 }
                 break;
             case 1:
-                //escenario.eventos(me);
+                vs2Player.eventos(me);
                 break;
             case 2:
                 configuracion.eventos(me);
@@ -73,13 +75,22 @@ public class MenuPrincipal {
     
     public void eventos(KeyEvent ke){
         
+        switch(cambiarPantalla){
+            case 1:
+                vs2Player.eventos(ke);
+                break;
+            case 2:
+                configuracion.eventos(ke);
+                break;
+        }
+        
     }
     
     public void actualizar(){
         
         switch(cambiarPantalla){
             case 1:
-                //escenario.actualizar();
+                vs2Player.actualizar();
                 break;
             case 2:
                 configuracion.actualizar();

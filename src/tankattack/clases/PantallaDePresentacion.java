@@ -10,10 +10,10 @@ public class PantallaDePresentacion {
     GameLoop gameLoop;
     
     /* Objetos involucrados */
-    MenuPrincipal menuPrincipal = new MenuPrincipal(this);
+    MenuPrincipal menuPrincipal;
     
     /* Cambiar pantalla */
-    boolean cambiarPantalla = false;
+    int cambiarPantalla = 0;
     
     /* Subobjetos */
     Objeto fondo = new Objeto(0, 0, 800, 600, 
@@ -26,7 +26,6 @@ public class PantallaDePresentacion {
     /* Metodo constructor */
     public PantallaDePresentacion(GameLoop gameLoop){
         
-        /* Asignar clase padre */
         this.gameLoop = gameLoop;
         
     }
@@ -34,55 +33,58 @@ public class PantallaDePresentacion {
     /* Pintar en pantalla */
     public void paint(Graphics2D g){
         
-        if(cambiarPantalla){
-            
-            menuPrincipal.paint(g);  // Pintar menu principal
-            
-        } else {
-            
-            fondo.paint(g);  // Pintar fondo
-            titulo.paint(g);  // Pintar titulo
-            enter.paint(g);  // Pintar Enter
-            
+        switch(cambiarPantalla){
+            case 0:
+                fondo.paint(g);  // Pintar fondo
+                titulo.paint(g);  // Pintar titulo
+                enter.paint(g);  // Pintar Enter
+                break;
+            case 1:
+                menuPrincipal.paint(g);  // Pintar menu principal
+                break;
         }
 
     }
     
     public void eventos(MouseEvent me){
         
-        if(cambiarPantalla){
-            
-            menuPrincipal.eventos(me);
-            
-        } else if(enter.click(me)){
-
-            cambiarPantalla = true;
-            
+        switch(cambiarPantalla){
+            case 0:
+                if(enter.click(me)) {
+                    menuPrincipal = new MenuPrincipal(this);
+                    cambiarPantalla = 1;
+                }
+                break;
+            case 1:
+                menuPrincipal.eventos(me);
+                break;
         }
         
     }
     
     public void eventos(KeyEvent ke){
         
-        if(cambiarPantalla){
-            
-            menuPrincipal.eventos(ke);
-            
-        } else if(enter.enter(ke)){
-
-            cambiarPantalla = true;
-            
-        }   
+        switch(cambiarPantalla){
+            case 0:
+                if(enter.enter(ke)) {
+                    menuPrincipal = new MenuPrincipal(this);
+                    cambiarPantalla = 1;
+                }
+                break;
+            case 1:
+                menuPrincipal.eventos(ke);
+                break;
+        }
 
     }
     
     public void actualizar(){
         
-        if(cambiarPantalla){
-            
-            menuPrincipal.actualizar();
-            
-        } 
+        switch(cambiarPantalla){
+            case 1:
+                menuPrincipal.actualizar();
+                break;
+        }
         
     }
     

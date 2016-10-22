@@ -5,28 +5,33 @@ import javax.swing.ImageIcon;
 
 
 public class Bala {
-    GameLoop gameLoop;
-    Image Bala;
-    protected int x,y;
-    private final int direccion;
-    private int SPEEDX;
-    private int SPEEDY;
-    private final int SPEEDFINAL=10;
-    private boolean visible;
-   
     
-    public Bala(GameLoop gameLoop, int x, int y,int direcc) {
-             Bala = new ImageIcon(this
-            .getClass()
-            .getResource("/tankattack/imagenes/tanque/bala.png")).getImage();
-            this.gameLoop = gameLoop;
-            visible=true;
-            this.x=x;
-            this.y=y;
-            this.direccion=direcc;
-            choice();
+    /* Objeto contenedor */
+    Tanque tank;
+    
+    Image Bala;
+    
+    int x;
+    int y;
+    int direccion;
+    int SPEEDX;
+    int SPEEDY;
+    int SPEEDFINAL = 10;
+    boolean visible;
+    
+    public Bala(Tanque tank, int x, int y, int direcc) {
+        
+        Bala = new ImageIcon(this.getClass()
+                .getResource("/tankattack/imagenes/tanque/bala.png")).getImage();
+        
+        this.tank = tank;
+        visible = true;
+        this.x = x;
+        this.y = y;
+        this.direccion = direcc;
+        choice();
            
-        }
+    }
     
     public int getX(){
       return x;

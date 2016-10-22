@@ -1,6 +1,7 @@
 package tankattack.clases;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class Configuracion {
@@ -66,6 +67,10 @@ public class Configuracion {
             menuPrincipal.cambiarPantalla = 0;
             
         }  
+        
+    }
+    
+    public void eventos(KeyEvent ke){
         
     }
     

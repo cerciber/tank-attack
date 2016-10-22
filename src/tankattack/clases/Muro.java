@@ -1,6 +1,8 @@
 package tankattack.clases;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class Muro {
     
@@ -62,6 +64,18 @@ public class Muro {
         
         muro.paint(g);
 
+    }
+    
+    public void eventos(MouseEvent me){
+        
+    }
+    
+    public void eventos(KeyEvent ke){
+    
+    }
+    
+    public void actualizar(){
+    
     }
     
 }

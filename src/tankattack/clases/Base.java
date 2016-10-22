@@ -7,6 +7,8 @@ package tankattack.clases;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -37,9 +39,17 @@ public class Base {
     
     }
     
-    public void eventos(){}
+    public void eventos(MouseEvent me){
+        
+    }
     
-    public void actualizar(){}
+    public void eventos(KeyEvent ke){
+    
+    }
+    
+    public void actualizar(){
+    
+    }
     
 }
 

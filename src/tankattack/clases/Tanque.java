@@ -3,22 +3,34 @@ package tankattack.clases;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Tanque {
-    private final GameLoop gameLoop;
-    static int i;
-    static int y=250;
-    static int x=350;
-    static int Orientacion;
-    private final ArrayList balas;
+    
+    /* Objeto contenedor */
+    Tablero tablero;
+    
+    /* Objetos involucrados */
+    ArrayList balas;
+    
+    /* variables globales */
+    int y = 250;
+    int x = 350;
+    
+    /* Orientacion del tanque */
+    // 1 = arriba
+    // 2 = abajo
+    // 3 = izquierda
+    // 4 = derecha
+    int Orientacion = 2;
+    
     static int BordeSuperior=0;
     static int BordeInferior=520;
     static int BordeIzquierdo=0;
     static int BordeDerecho=750;
-    Image Dibujo;
-     
+
     //Imagen del tanque hacia arriba
     Image TankUP = new ImageIcon(this
             .getClass()
@@ -36,24 +48,40 @@ public class Tanque {
     Image TankRIGHT = new ImageIcon(this
             .getClass()
             .getResource("/tankattack/imagenes/tanque/TankRIGHT.png")).getImage();
-   
-    public Tanque(GameLoop gameLoop) {
-       balas = new ArrayList();
-       this.gameLoop = gameLoop;
-    }
     
+        
+    Image Dibujo = TankDOWN;
+   
+    public Tanque(Tablero t) {
+        
+       balas = new ArrayList();
+       tablero = t;
+       
+    }
     
     public void paint(Graphics2D g) {
-        g.drawImage(Dibujo, x, y, 50, 50, null);   
+        
+        g.drawImage(Dibujo, x, y, 50, 50, null);
+        
+        // Pintar Array de balas a demanda
+        for(int i = 0; i < balas.size(); i++) {
+            Bala b = (Bala) balas.get(i);
+            //dependiendo del punto al que mire el tanque dibuja la bala en la punta del cañon
+            if(b.getdir()==1)g.drawImage(b.getImage(), b.getX()+16, b.getY()-15,20,20, null);
+            if(b.getdir()==2)g.drawImage(b.getImage(), b.getX()+16, b.getY()+45,20,20, null);
+            if(b.getdir()==3)g.drawImage(b.getImage(), b.getX()-15, b.getY()+15,20,20, null);
+            if(b.getdir()==4)g.drawImage(b.getImage(), b.getX()+45, b.getY()+10,20,20, null);
+        }
+        
     }
     
-    public ArrayList getBalas(){
-      return balas;
-    } 
+    public void eventos(MouseEvent me){
+        
+    }
     
-    static boolean Press=false;
     public void eventos(KeyEvent ke){
-        int pasos=10;
+        
+        int pasos = 10;
        
         switch(ke.getKeyCode()) {
             case  KeyEvent.VK_UP:
@@ -85,9 +113,22 @@ public class Tanque {
                 
             break;
             case KeyEvent.VK_NUMPAD0:
-                balas.add(new Bala(gameLoop,x, y,Orientacion));               
+                balas.add(new Bala(this, x, y, Orientacion));               
             break;
         }   //Traza del tanque en x e y
             //System.out.println("x="+x+"  y="+y+"  "+Orientacion);
         }
+    
+    public void actualizar(){
+      
+        for(int j = 0; j < balas.size(); j++){
+            Bala b = (Bala) balas.get(j);
+            if(b.isVisible()){
+                b.update();
+            }
+            else
+                balas.remove(j);
+        }
+    }
+    
 }
