@@ -78,6 +78,10 @@ public class PantallaDePresentacion {
 
     }
     
+    public void released(KeyEvent ke){
+        menuPrincipal.released(ke);
+    }
+    
     public void actualizar(){
         
         switch(cambiarPantalla){

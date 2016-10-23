@@ -16,7 +16,7 @@ public class Bala {
     int direccion;
     int SPEEDX;
     int SPEEDY;
-    int SPEEDFINAL = 10;
+    int SPEEDFINAL = 18;
     boolean visible;
     
     public Bala(Tanque tank, int x, int y, int direcc) {

@@ -43,6 +43,10 @@ public class VS2Player {
         
     }
     
+    public void released(KeyEvent ke){
+        tablero.released(ke);
+    }
+    
     public void actualizar(){
         
         marcador.actualizar();

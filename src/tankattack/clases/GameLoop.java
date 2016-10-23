@@ -1,7 +1,6 @@
 package tankattack.clases;
 
 // Librerias
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -9,7 +8,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -72,8 +70,10 @@ public class GameLoop extends JPanel implements Runnable{
 
             /* Detectar cuando se suelta una letra */
             @Override
-            public void keyReleased(KeyEvent ke) {}
-           
+            public void keyReleased(KeyEvent ke) {
+                pantallaDePresentacion.released(ke);
+            }
+               
         });
 
         /* Detectar movimiento del mouse en la ventana */

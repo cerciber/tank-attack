@@ -86,6 +86,10 @@ public class MenuPrincipal {
         
     }
     
+    public void released(KeyEvent ke){
+        vs2Player.released(ke);
+    }
+    
     public void actualizar(){
         
         switch(cambiarPantalla){

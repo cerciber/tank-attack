@@ -112,6 +112,11 @@ public final class Tablero {
         
     }
     
+    public void released(KeyEvent ke){
+        tanque1.released(ke);
+        tanque2.released(ke);
+    }
+    
     public void actualizar(){
     
         /* actualizacion muros */
