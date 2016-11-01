@@ -48,15 +48,21 @@ public class Muro {
                 nombre = "agua";
                 break;
             case 5:
-                nombre = "hollo";
+                nombre = "hoyo";
                 break;
             case 6:
                 nombre = "suelo";
                 break;
         }
         
-        muro = new Objeto(x, y, ancho, alto, 
+        try{
+            muro = new Objeto(x, y, ancho, alto, 
             "/tankattack/imagenes/muro/" + nombre + ".png");
+        }catch(NullPointerException e){
+            muro = new Objeto(x, y, ancho, alto, 
+            "/tankattack/imagenes/muro/" + nombre + ".gif");
+        }
+        
         
     }
     

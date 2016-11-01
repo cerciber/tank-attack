@@ -28,10 +28,10 @@ public final class Tablero {
     public Tablero(VS2Player e){
         
         escenario = e;
-        base1 = new Base(this, x + 50, y + 50); 
-        base2 = new Base(this, x + 600, y + 400); 
-        bandera1 = new Bandera(this, x + 60, y + 60); 
-        bandera2 = new Bandera(this,  x + 610, y + 410);
+        base1 = new Base(this, x + 50, y + 50, "rojo"); 
+        base2 = new Base(this, x + 600, y + 400, "azul"); 
+        bandera1 = new Bandera(this, x + 50, y + 50, "rojo"); 
+        bandera2 = new Bandera(this,  x + 600, y + 400,  "azul");
         tanque1 = new Tanque(this, x + 100, y + 50, 1);
         tanque2 = new Tanque(this, x + 550, y + 400, 2);
         muros = new Muro[14][10];
@@ -63,10 +63,10 @@ public final class Tablero {
             }
         }
         
-        tanque1.paint(g);
-        tanque2.paint(g);
         base1.paint(g);
         base2.paint(g);
+        tanque1.paint(g);
+        tanque2.paint(g);
         bandera1.paint(g);
         bandera2.paint(g);
 

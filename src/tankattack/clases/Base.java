@@ -7,8 +7,10 @@ package tankattack.clases;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -24,18 +26,23 @@ public class Base {
     int w = 50;
     int h = 50;
     
-    public Base(Tablero t, int x, int y){
+    Image baseImg;
+    
+    public Base(Tablero t, int x, int y, String color){
         
         tablero = t;
         this.x = x;
         this.y = y;
         
+        baseImg = new ImageIcon(this
+            .getClass()
+            .getResource("/tankattack/imagenes/muro/"+color+".png")).getImage();
+        
     }
     
     public void paint(Graphics2D g2){
         
-        g2.setColor (Color.blue);
-        g2.fillRect (x, y, w, h);
+        g2.drawImage(baseImg, x, y, w, h, null);
     
     }
     

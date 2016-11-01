@@ -25,15 +25,18 @@ public class Bandera {
         4: tanque enemigo  
     */
     int poseedor;
-    Image Flag = new ImageIcon(this
-            .getClass()
-            .getResource("/tankattack/imagenes/Banderas/mexico3.gif")).getImage();
     
-    public Bandera(Tablero t, int x, int y){
+    Image Flag;
+    
+    public Bandera(Tablero t, int x, int y, String color){
         
         tablero = t;
         this.x = x;
         this.y = y;
+        
+        Flag = new ImageIcon(this
+            .getClass()
+            .getResource("/tankattack/imagenes/Banderas/"+ color +".gif")).getImage();
         
     }
     
