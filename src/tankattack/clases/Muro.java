@@ -9,7 +9,7 @@ public class Muro {
     /* Objeto contenedor */
     Tablero tablero;
     
-    // tipo de muero
+    // tipo de muro
     // 1 : "ladrillo"
     // 2 : "piedra"
     // 3 : "acero"
@@ -24,14 +24,17 @@ public class Muro {
     boolean estado;  // estado de la prensa (abierto/carrado)
     int ancho = 50;
     int alto = 50;
-    
+     int x;
+     int y;
+    String Nombre;
      /* Subobjetos */
     Objeto muro;
     
     public Muro(Tablero t, int x, int y, int tipo){
         
         tablero = t;
-        
+        this.x = x;
+        this.y = y;
         String nombre = null;
         
         switch(tipo){
@@ -63,7 +66,7 @@ public class Muro {
             "/tankattack/imagenes/muro/" + nombre + ".gif");
         }
         
-        
+        this.Nombre = nombre;
     }
     
     /* Pintar en pantalla */
@@ -71,6 +74,16 @@ public class Muro {
         
         muro.paint(g);
 
+    }
+    
+    public int getx(){
+        return x;
+    }
+    public  int gety(){
+        return y;
+    }
+    public  String getname(){
+        return Nombre;
     }
     
     public void eventos(MouseEvent me){

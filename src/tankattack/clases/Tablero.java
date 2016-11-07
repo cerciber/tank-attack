@@ -21,9 +21,9 @@ public final class Tablero {
     Base base2; 
     Bandera bandera1; 
     Bandera bandera2;
-    Tanque tanque1;
-    Tanque tanque2;
-    Muro[][] muros;
+    static Tanque tanque1;
+    static Tanque tanque2;
+    static Muro[][] muros;
     
     public Tablero(VS2Player e){
         

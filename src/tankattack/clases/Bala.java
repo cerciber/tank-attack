@@ -1,6 +1,7 @@
 package tankattack.clases;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 
@@ -54,10 +55,26 @@ public class Bala {
   }
   public void update(){
         //aux=choice();
+        Rectangle rectanglePlayer = getBounds(direccion);
+        
+        if(y>Tanque.BordeInferior||y<Tanque.BordeSuperior||x>Tanque.BordeDerecho||x<Tanque.BordeIzquierdo) visible = false;
+        for(int i = 0; i <= 13; i++){
+                for(int j = 0; j <= 9; j++){
+         
+                       if (rectanglePlayer.intersects(Tablero.muros[i][j].getx(),Tablero.muros[i][j].gety(), 50, 50)&&Tablero.muros[i][j].getname().equals("acero")/*||rectanglePlayer.intersects(rectanglePlayer*/){
+                           visible=false; 
+                       }
+                       if (Tablero.tanque1.jugador==1&&rectanglePlayer.intersects(Tablero.tanque1.getx(),Tablero.tanque1.gety(),50,50)){
+                           visible=false; 
+                       }
+                       if (Tablero.tanque2.jugador==2&&rectanglePlayer.intersects(Tablero.tanque2.getx(),Tablero.tanque2.gety(),50,50)){
+                           visible=false; 
+                       }
+                }
+        }
         y+= SPEEDY;
         x+=SPEEDX;
-        //if(y>Tanque.BordeInferior||y<Tanque.BordeSuperior||x>Tanque.BordeDerecho||x<Tanque.BordeIzquierdo) visible = false;
-    }
+  }
   public final void choice(){
         if(direccion==1){SPEEDX=0;SPEEDY=-SPEEDFINAL;}
         if(direccion==2){SPEEDX=0;SPEEDY=SPEEDFINAL;}
@@ -69,6 +86,25 @@ public class Bala {
   public int getdir(){
       return direccion;
   }
+  public Rectangle getBounds(int i) {
+        switch (i){
+            case 1:
+                return new Rectangle(x, y-48, 20, 20);
+            
+            case 2:
+                return new Rectangle(x, y+68, 20, 20);
+                
+            case 3:
+                return new Rectangle(x-48, y, 20, 20);
+                
+            case 4:
+                return new Rectangle(x+68, y, 20, 20);
+            
+                    
+            default: return new Rectangle(x, y, 20, 20);
+        }
+        
+    }
     
 }
     

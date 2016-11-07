@@ -6,7 +6,6 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javafx.scene.paint.Color;
 import javax.swing.ImageIcon;
 
 public class Tanque {
@@ -39,15 +38,13 @@ public class Tanque {
     boolean pressed=false;
     boolean pressed1=false;
     boolean pressed2=false;
-    boolean pressed3=true;
-    
-    //Muro[][] muros = new Muro[15][11];
+    Rectangle rectanglePlayer1;
+    Rectangle rectanglePlayer2;
     //Imagen del tanque hacia arriba
     Image TankUP = new ImageIcon(this
             .getClass()
             .getResource("/tankattack/imagenes/tanque/TankUP.png")).getImage();
     //Imagen del tanque hacia abajo
-    
     Image TankDOWN = new ImageIcon(this
             .getClass()
             .getResource("/tankattack/imagenes/tanque/TankDOWN.png")).getImage();
@@ -78,7 +75,6 @@ public class Tanque {
     public void paint(Graphics2D g) {
         
         g.drawImage(Dibujo, x, y, 50, 50, null);
-        //g.drawRect(rectanglePlayer, y, y, y);
         // Pintar Array de balas a demanda
         for(int i = 0; i < balas.size(); i++) {
             Bala b = (Bala) balas.get(i);
@@ -98,67 +94,50 @@ public class Tanque {
         y+= SPEEDY;
         x+=SPEEDX;
     }
-    public void stop(){
-        SPEEDFINAL=0;
-        System.out.println("stop");
-    }
-    int auxy;
-    int auxx;
-    boolean v;
+   
+    
     public void update(){
         
-            Rectangle rectanglePlayer = getBounds(Orientacion);
-            //mov();
+            rectanglePlayer1 = getBounds(Orientacion);
             System.out.print("x="+x);
             System.out.println("    y="+y);
             for(int i = 0; i <= 13; i++){
                 for(int j = 0; j <= 9; j++){
-//                   
-                       if (rectanglePlayer.intersects(Tablero.muros[i][j].getx(),Tablero.muros[i][j].gety(), 50, 50)&&Tablero.muros[i][j].getname().equals("agua")){
+         
+                       if (rectanglePlayer1.intersects(Tablero.muros[i][j].getx(),Tablero.muros[i][j].gety(), 50, 50)&&Tablero.muros[i][j].getname().equals("acero")){
                             System.out.println("tocando "+Tablero.muros[i][j].getname());
-                            //stop();
-                            //v=false;
-                            
+                                                     
                             switch(Orientacion){
                                 case 1:
                                     System.out.println("Obstaculo arriba ");
                                    abajo();
-                                   //y += REVERSE;
-                                    //moveDOWN(REVERSE);
-                                   //moveDOWN();
+                                   
                                 break;
                                 case 2:
                                     System.out.println("Obstaculo abajo");
                                     arriba();
-                                    //y += -REVERSE;
-                                    //moveUP(REVERSE);
-                                    //moveUP();
+                                    
                                 break;
                                 case 3:
                                     System.out.println("Obstaculo a la izquierda");
-                                   //x += REVERSE;//SPEEDFINAL;
-                                  derecha();
-                                    //moveRIGHT();
+                                    derecha();
+                                 
                                 break;
                                 case 4:
                                     System.out.println("Obstaculo a la derecha");
-                                    //x += -REVERSE;//SPEEDFINAL;
                                     izquierda();
-                                   // moveLEFT();
+                                   
                                 break;
                             }
                             
-                            //break;
-                            //System.out.println("no leido");
+                            
                         }
                        
-                       else{v=true;}
+                       
                 }
                 
             }
-            if(v){
-                 
-            } //else{break;}
+           
             mov();
     }
     
@@ -213,6 +192,12 @@ public class Tanque {
     public void moveRIGHT() {
             SPEEDX = SPEEDFINAL;
             SPEEDY = 0;
+    }
+    public int getx(){
+        return x;
+    }
+    public int gety(){
+        return y;
     }
     
     
@@ -389,5 +374,5 @@ public class Tanque {
                 balas.remove(j);
         }
     }
-    
+   
 }
