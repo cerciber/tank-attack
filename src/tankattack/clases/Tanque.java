@@ -2,9 +2,11 @@
 package tankattack.clases;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javafx.scene.paint.Color;
 import javax.swing.ImageIcon;
 
 public class Tanque {
@@ -26,17 +28,20 @@ public class Tanque {
     // 4 = derecha
     int Orientacion = 2;
     
-    static int BordeSuperior=0;
-    static int BordeInferior=520;
-    static int BordeIzquierdo=0;
-    static int BordeDerecho=750;
+    static int BordeSuperior=90;
+    static int BordeInferior=500;
+    static int BordeIzquierdo=45;
+    static int BordeDerecho=700;
     int SPEEDX;
     int SPEEDY;
     int SPEEDFINAL = 10;
-    boolean pressed=true;
-    boolean pressed1=true;
-    boolean pressed2=true;
+    int REVERSE = 10;
+    boolean pressed=false;
+    boolean pressed1=false;
+    boolean pressed2=false;
     boolean pressed3=true;
+    
+    //Muro[][] muros = new Muro[15][11];
     //Imagen del tanque hacia arriba
     Image TankUP = new ImageIcon(this
             .getClass()
@@ -73,7 +78,7 @@ public class Tanque {
     public void paint(Graphics2D g) {
         
         g.drawImage(Dibujo, x, y, 50, 50, null);
-        
+        //g.drawRect(rectanglePlayer, y, y, y);
         // Pintar Array de balas a demanda
         for(int i = 0; i < balas.size(); i++) {
             Bala b = (Bala) balas.get(i);
@@ -89,95 +94,178 @@ public class Tanque {
     public void eventos(MouseEvent me){
         
     }
+    public void mov(){
+        y+= SPEEDY;
+        x+=SPEEDX;
+    }
+    public void stop(){
+        SPEEDFINAL=0;
+        System.out.println("stop");
+    }
     int auxy;
     int auxx;
+    boolean v;
     public void update(){
-        //aux=choice();
-//        if(y>Tanque.BordeInferior||y<Tanque.BordeSuperior||x>Tanque.BordeDerecho||x<Tanque.BordeIzquierdo) {
-//          
-//        
-//         if(y>Tanque.BordeInferior){
-//            SPEEDY=0;
-//            
-//        }
-//         else if(y<Tanque.BordeSuperior){
-//           SPEEDY=0;
-//           
-//        }
-//        else if(x>Tanque.BordeDerecho){
-//           
-//           SPEEDX=0;
-//        }
-//        else if(x<Tanque.BordeIzquierdo){
-//            
-//            SPEEDX=0;
-//        } 
-            
-            y+= SPEEDY;
-            x+=SPEEDX;
-          
+        
+            Rectangle rectanglePlayer = getBounds(Orientacion);
+            //mov();
+            System.out.print("x="+x);
+            System.out.println("    y="+y);
+            for(int i = 0; i <= 13; i++){
+                for(int j = 0; j <= 9; j++){
+//                   
+                       if (rectanglePlayer.intersects(Tablero.muros[i][j].getx(),Tablero.muros[i][j].gety(), 50, 50)&&Tablero.muros[i][j].getname().equals("agua")){
+                            System.out.println("tocando "+Tablero.muros[i][j].getname());
+                            //stop();
+                            //v=false;
+                            
+                            switch(Orientacion){
+                                case 1:
+                                    System.out.println("Obstaculo arriba ");
+                                   abajo();
+                                   //y += REVERSE;
+                                    //moveDOWN(REVERSE);
+                                   //moveDOWN();
+                                break;
+                                case 2:
+                                    System.out.println("Obstaculo abajo");
+                                    arriba();
+                                    //y += -REVERSE;
+                                    //moveUP(REVERSE);
+                                    //moveUP();
+                                break;
+                                case 3:
+                                    System.out.println("Obstaculo a la izquierda");
+                                   //x += REVERSE;//SPEEDFINAL;
+                                  derecha();
+                                    //moveRIGHT();
+                                break;
+                                case 4:
+                                    System.out.println("Obstaculo a la derecha");
+                                    //x += -REVERSE;//SPEEDFINAL;
+                                    izquierda();
+                                   // moveLEFT();
+                                break;
+                            }
+                            
+                            //break;
+                            //System.out.println("no leido");
+                        }
+                       
+                       else{v=true;}
+                }
+                
+            }
+            if(v){
+                 
+            } //else{break;}
+            mov();
     }
-  public final void choice(){
-        if(Orientacion==1){SPEEDX=0;SPEEDY=-SPEEDFINAL;}
-        if(Orientacion==2){SPEEDX=0;SPEEDY=SPEEDFINAL;}
-        if(Orientacion==3){SPEEDX=-SPEEDFINAL;SPEEDY=0;}
-        if(Orientacion==4){SPEEDX=SPEEDFINAL;SPEEDY=0;}
+    
+    public Rectangle getBounds(int i) {
+        switch (i){
+            case 1:
+                return new Rectangle(x, y-10, 50, 60);
+            
+            case 2:
+                return new Rectangle(x, y, 50, 60);
+                
+            case 3:
+                return new Rectangle(x-10, y, 60, 50);
+                
+            case 4:
+                return new Rectangle(x, y, 60, 50);
+            
+                    
+            default: return new Rectangle(x, y, 50, 50);
+        }
         
     }
+    
+    public void derecha(){
+        x += REVERSE;
+    }
+     public void izquierda(){
+        x += -REVERSE;
+    }
+      public void abajo(){
+        y += REVERSE;
+    }
+       public void arriba(){
+        y += -REVERSE;
+    }
+    
+    public void moveUP() {
+            SPEEDX = 0;
+            SPEEDY = -SPEEDFINAL;
+    }
+
+    public void moveDOWN() {
+            SPEEDX = 0;
+            SPEEDY = SPEEDFINAL;
+    }
+
+    public void moveLEFT() {
+            SPEEDX = -SPEEDFINAL;
+            SPEEDY = 0;
+    }
+
+    public void moveRIGHT() {
+            SPEEDX = SPEEDFINAL;
+            SPEEDY = 0;
+    }
+    
+    
     public void eventos(KeyEvent ke){
         
-        int pasos = 10;
-        
         if(jugador == 1){
-            
+     
             switch(ke.getKeyCode()) {
                 case  KeyEvent.VK_UP:
                     if(y>BordeSuperior){
-                            //y=y-pasos;
-                            
-                            pressed2=true;
+                             //y=y-pasos;
+                    }      
+                            pressed1=true;
                             
                             Dibujo=TankUP;
                             Orientacion=1;
-                            choice();
-                    }
+                           moveUP();
+                    
 
                 break;
                 case  KeyEvent.VK_DOWN:
                     if(y<BordeInferior){
                             //y=y+pasos;
-                            
-                            pressed2=true;
+                    }      
+                            pressed1=true;
                             
                             Dibujo=TankDOWN;
                             Orientacion=2;
-                            choice();
+                            moveDOWN();
                     
-                    }
-
                 break;
                 case  KeyEvent.VK_LEFT:
                     if(x>BordeIzquierdo){
                             //x=x-pasos;
-                            
-                            pressed2=true;
+                    }        
+                            pressed1=true;
                             
                             Dibujo=TankLEFT;    
                             Orientacion=3;
-                            choice();
-                    }
+                           moveLEFT();
+                    
 
                 break;
                 case  KeyEvent.VK_RIGHT:
                     if(x<BordeDerecho){
                             //x=x+pasos;
-                            
-                            pressed2=true;
+                    }
+                            pressed1=true;
                             
                             Dibujo=TankRIGHT;
                             Orientacion=4;
-                            choice();
-                    }
+                           moveRIGHT();
+                    
 
                 break;
             }
@@ -189,56 +277,55 @@ public class Tanque {
                     
                     }
             //}   
-            System.out.println("x="+x);
-            System.out.println("y="+y);
+            
         } else {
             
             switch(ke.getKeyCode()) {
                 case  KeyEvent.VK_W:
-                    if(y>BordeSuperior){
+                    if(y>BordeSuperior){}
                             //y=y-pasos;
-                            pressed3=true;
+                            pressed2=true;
                             Dibujo=TankUP;
                             Orientacion=1;
-                            choice();
-                    }
+                             moveUP();
+                    
 
                 break;
                 case  KeyEvent.VK_S:
-                    if(y<BordeInferior){
+                    if(y<BordeInferior){}
                             //y=y+pasos;
-                            pressed3=true;
+                            pressed2=true;
                             Dibujo=TankDOWN;
                             Orientacion=2;
-                            choice();
-                    }
+                            moveDOWN();
+                    
 
                 break;
                 case  KeyEvent.VK_A:
-                    if(x>BordeIzquierdo){
+                    if(x>BordeIzquierdo){}
                             //x=x-pasos;
-                            pressed3=true;
+                            pressed2=true;
                             Dibujo=TankLEFT;    
                             Orientacion=3;
-                            choice();
-                    }
+                            moveLEFT();
+                    
 
                 break;
                 case  KeyEvent.VK_D:
-                    if(x<BordeDerecho){
-                            //x=x+pasos;
-                            pressed3=true;
+                    if(x<BordeDerecho){}
+                            //x=x+pasos;}
+                            pressed2=true;
                             Dibujo=TankRIGHT;
                             Orientacion=4;
-                            choice();
-                    }
+                            moveRIGHT();
+                    
 
                 break;
             }
-            if( ke.getKeyCode()==KeyEvent.VK_G&&pressed1){
+            if( ke.getKeyCode()==KeyEvent.VK_G&&pressed){
                     balas.add(new Bala(this, x, y, Orientacion));               
                // break;
-                    pressed1=false;
+                    pressed=false;
                     
                     }
             
@@ -253,32 +340,32 @@ public class Tanque {
       if(key == KeyEvent.VK_NUMPAD0){
           pressed = true;}
       if(key == KeyEvent.VK_G){
-          pressed1 = true;}
+          pressed = true;}
       
       switch(ke.getKeyCode()) {
                 case  KeyEvent.VK_UP:
-                    pressed2=false;    
+                    pressed1=false;    
                 break;
                 case  KeyEvent.VK_DOWN:
-                    pressed2=false; 
+                    pressed1=false; 
                 break;
                 case  KeyEvent.VK_LEFT:
-                    pressed2=false; 
+                    pressed1=false; 
                 break;
                 case  KeyEvent.VK_RIGHT:
-                    pressed2=false; 
-                break;
+                    pressed1=false; 
+                break;     
                 case  KeyEvent.VK_W:
-                    pressed3=false;                    
+                    pressed2=false;                    
                 break;
                 case  KeyEvent.VK_S:
-                    pressed3=false;                  
+                    pressed2=false;                  
                 break;
                 case  KeyEvent.VK_A:
-                    pressed3=false; 
+                    pressed2=false; 
                 break;
                 case  KeyEvent.VK_D:
-                    pressed3=false; 
+                    pressed2=false; 
                 break;
                 //default: pressed2=true;
       }
@@ -287,8 +374,10 @@ public class Tanque {
     }
     
     public void actualizar(){
-       
-            if(pressed2||pressed3){update();
+            //v=true;
+            if(pressed1){update();
+        }   
+            else if(pressed2){update();
         }
         
         for(int j = 0; j < balas.size(); j++){
