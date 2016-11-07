@@ -129,15 +129,9 @@ public class Tanque {
                                    
                                 break;
                             }
-                            
-                            
                         }
-                       
-                       
                 }
-                
             }
-           
             mov();
     }
     
@@ -207,11 +201,7 @@ public class Tanque {
      
             switch(ke.getKeyCode()) {
                 case  KeyEvent.VK_UP:
-                    if(y>BordeSuperior){
-                             //y=y-pasos;
-                    }      
                             pressed1=true;
-                            
                             Dibujo=TankUP;
                             Orientacion=1;
                            moveUP();
@@ -219,66 +209,51 @@ public class Tanque {
 
                 break;
                 case  KeyEvent.VK_DOWN:
-                    if(y<BordeInferior){
-                            //y=y+pasos;
-                    }      
                             pressed1=true;
-                            
                             Dibujo=TankDOWN;
                             Orientacion=2;
                             moveDOWN();
                     
                 break;
                 case  KeyEvent.VK_LEFT:
-                    if(x>BordeIzquierdo){
-                            //x=x-pasos;
-                    }        
-                            pressed1=true;
                             
+                            pressed1=true;
                             Dibujo=TankLEFT;    
                             Orientacion=3;
-                           moveLEFT();
+                            moveLEFT();
                     
 
                 break;
                 case  KeyEvent.VK_RIGHT:
-                    if(x<BordeDerecho){
-                            //x=x+pasos;
-                    }
-                            pressed1=true;
-                            
-                            Dibujo=TankRIGHT;
-                            Orientacion=4;
+                           pressed1=true;
+                           Dibujo=TankRIGHT;
+                           Orientacion=4;
                            moveRIGHT();
                     
 
                 break;
             }
-           // switch(ke.getKeyCode()) {
-                    if( ke.getKeyCode()==KeyEvent.VK_NUMPAD0&&pressed){
-                    balas.add(new Bala(this, x, y, Orientacion));               
-               // break;
-                    pressed=false;
-                    
-                    }
-            //}   
+          
+            if (ke.getKeyCode() == KeyEvent.VK_NUMPAD0 && pressed) {
+                balas.add(new Bala(this, x, y, Orientacion));
+                pressed = false;
+            }
+         
             
         } else {
             
             switch(ke.getKeyCode()) {
                 case  KeyEvent.VK_W:
                     if(y>BordeSuperior){}
-                            //y=y-pasos;
                             pressed2=true;
                             Dibujo=TankUP;
                             Orientacion=1;
-                             moveUP();
+                            moveUP();
                     
 
                 break;
                 case  KeyEvent.VK_S:
                     if(y<BordeInferior){}
-                            //y=y+pasos;
                             pressed2=true;
                             Dibujo=TankDOWN;
                             Orientacion=2;
@@ -288,7 +263,6 @@ public class Tanque {
                 break;
                 case  KeyEvent.VK_A:
                     if(x>BordeIzquierdo){}
-                            //x=x-pasos;
                             pressed2=true;
                             Dibujo=TankLEFT;    
                             Orientacion=3;
@@ -298,7 +272,6 @@ public class Tanque {
                 break;
                 case  KeyEvent.VK_D:
                     if(x<BordeDerecho){}
-                            //x=x+pasos;}
                             pressed2=true;
                             Dibujo=TankRIGHT;
                             Orientacion=4;
@@ -308,11 +281,9 @@ public class Tanque {
                 break;
             }
             if( ke.getKeyCode()==KeyEvent.VK_G&&pressed){
-                    balas.add(new Bala(this, x, y, Orientacion));               
-               // break;
+                    balas.add(new Bala(this, x, y, Orientacion));
                     pressed=false;
-                    
-                    }
+            }
             
         }
         
@@ -353,17 +324,13 @@ public class Tanque {
                     pressed2=false; 
                 break;
                 //default: pressed2=true;
-      }
-        
-       
+        }
     }
     
     public void actualizar(){
-            //v=true;
-            if(pressed1){update();
-        }   
-            else if(pressed2){update();
-        }
+            
+            if(pressed1){update();}   
+            else if(pressed2){update();}
         
         for(int j = 0; j < balas.size(); j++){
             Bala b = (Bala) balas.get(j);

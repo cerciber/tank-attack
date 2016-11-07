@@ -48,12 +48,12 @@ public class Bala {
     
     public boolean isVisible(){
       return visible;
-  }
+    }
 
-  public void setVisible(boolean visible){
+    public void setVisible(boolean visible){
       this.visible = visible;
-  }
-  public void update(){
+    }
+    public void update(){
         //aux=choice();
         Rectangle rectanglePlayer = getBounds(direccion);
         
@@ -74,8 +74,8 @@ public class Bala {
         }
         y+= SPEEDY;
         x+=SPEEDX;
-  }
-  public final void choice(){
+    }
+    public final void choice(){
         if(direccion==1){SPEEDX=0;SPEEDY=-SPEEDFINAL;}
         if(direccion==2){SPEEDX=0;SPEEDY=SPEEDFINAL;}
         if(direccion==3){SPEEDX=-SPEEDFINAL;SPEEDY=0;}
@@ -83,10 +83,10 @@ public class Bala {
         if(direccion==0){this.visible=false;}
     }
     
-  public int getdir(){
+    public int getdir(){
       return direccion;
-  }
-  public Rectangle getBounds(int i) {
+    }
+    public Rectangle getBounds(int i) {
         switch (i){
             case 1:
                 return new Rectangle(x, y-48, 20, 20);
