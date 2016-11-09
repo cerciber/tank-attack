@@ -19,12 +19,13 @@ public class Bandera {
     
     /*
     Poseedor actual de la bandera
+        0: suelta
         1: base aliada 
         2: tanque aliado 
         3: base enemiga 
         4: tanque enemigo  
     */
-    int poseedor;
+    int poseedor = 1;
     
     Image Flag;
     
@@ -43,13 +44,6 @@ public class Bandera {
     public void paint(Graphics2D g2){
         
         g2.drawImage(Flag, x, y, 50, 50, null);
-//        // Bandera
-//        g2.setColor (Color.red);
-//        g2.fillRect (x, y, w, h / 2);
-//        
-//        // Mastil
-//        g2.setColor (Color.black);
-//        g2.fillRect (x, y, 5, h);
     
     }
     

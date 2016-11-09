@@ -133,6 +133,102 @@ public class Tanque {
                 }
             }
             mov();
+            
+            tomarBandera();
+    }
+    
+    public void tomarBandera(){
+        
+        if(jugador == 1){
+            
+            // Tomar bandera aliada
+            if (tablero.bandera1.x + tablero.bandera1.w / 2 >= x && 
+               tablero.bandera1.x + tablero.bandera1.w / 2 <= x + 50 &&
+               tablero.bandera1.y + tablero.bandera1.h / 2 >= y && 
+               tablero.bandera1.y + tablero.bandera1.h / 2 <= y + 50){
+                
+               tablero.bandera1.x = tablero.base1.x;
+               tablero.bandera1.y = tablero.base1.y;
+               tablero.bandera1.poseedor = 1;
+               
+            }  
+            
+            // Tomar bandera enemiga
+            if (tablero.bandera2.x + tablero.bandera2.w / 2 >= x && 
+               tablero.bandera2.x + tablero.bandera2.w / 2 <= x + 50 &&
+               tablero.bandera2.y + tablero.bandera2.h / 2 >= y && 
+               tablero.bandera2.y + tablero.bandera2.h / 2 <= y + 50){
+                
+               tablero.bandera2.poseedor = 4;
+                
+            }
+            
+            // Llevar bandera enemiga
+            if (tablero.bandera2.poseedor == 4) {
+                
+                tablero.bandera2.x = x;
+                tablero.bandera2.y = y;
+                
+            } 
+            
+            // Ganar bandera
+            if (tablero.bandera2.x + tablero.bandera2.w / 2 >= tablero.base1.x && 
+               tablero.bandera2.x + tablero.bandera2.w / 2 <= tablero.base1.x + 50 &&
+               tablero.bandera2.y + tablero.bandera2.h / 2 >= tablero.base1.y && 
+               tablero.bandera2.y + tablero.bandera2.h / 2 <= tablero.base1.y + 50) {
+           
+               tablero.bandera2.x = tablero.base1.x;
+               tablero.bandera2.y = tablero.base1.y;
+               tablero.bandera2.poseedor = 3;
+                
+            } 
+            
+        }else{
+            
+            // Tomar bandera aliada
+            if (tablero.bandera2.x + tablero.bandera2.w / 2 >= x && 
+               tablero.bandera2.x + tablero.bandera2.w / 2 <= x + 50 &&
+               tablero.bandera2.y + tablero.bandera2.h / 2 >= y && 
+               tablero.bandera2.y + tablero.bandera2.h / 2 <= y + 50){
+                
+               tablero.bandera2.x = tablero.base2.x;
+               tablero.bandera2.y = tablero.base2.y;
+               tablero.bandera2.poseedor = 1;
+               
+            }  
+            
+            // Tomar bandera enemiga
+            if (tablero.bandera1.x + tablero.bandera1.w / 2 >= x && 
+               tablero.bandera1.x + tablero.bandera1.w / 2 <= x + 50 &&
+               tablero.bandera1.y + tablero.bandera1.h / 2 >= y && 
+               tablero.bandera1.y + tablero.bandera1.h / 2 <= y + 50){
+                
+               tablero.bandera1.poseedor = 4;
+                
+            }
+            
+            // Llevar bandera enemiga
+            if (tablero.bandera1.poseedor == 4) {
+                
+                tablero.bandera1.x = x;
+                tablero.bandera1.y = y;
+                
+            } 
+            
+            // Ganar bandera
+            if (tablero.bandera1.x + tablero.bandera1.w / 2 >= tablero.base2.x && 
+               tablero.bandera1.x + tablero.bandera1.w / 2 <= tablero.base2.x + 50 &&
+               tablero.bandera1.y + tablero.bandera1.h / 2 >= tablero.base2.y && 
+               tablero.bandera1.y + tablero.bandera1.h / 2 <= tablero.base2.y + 50) {
+           
+               tablero.bandera1.x = tablero.base2.x;
+               tablero.bandera1.y = tablero.base2.y;
+               tablero.bandera1.poseedor = 3;
+                
+            } 
+            
+        }
+        
     }
     
     public Rectangle getBounds(int i) {
