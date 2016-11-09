@@ -23,7 +23,7 @@ public class Marcador {
     String Jugador2;
    
     /* Fuente texto */
-    Font fuente = new Font ("Helvetica", Font.BOLD, 12);
+    Font fuente = new Font ("Helvetica", Font.BOLD, 16);
     
     public Marcador(VS2Player e){
         //Ingreso nombre de los jugadores
@@ -43,7 +43,7 @@ public class Marcador {
         g.setColor(Color.white);
         g.setFont(fuente);
         g.drawString(Jugador1+":      "+Puntaje1, x + 30, y + g.getFontMetrics().getAscent() + 30);
-        g.drawString (Jugador2+":     "+Puntaje2, x + w - 30 - g.getFontMetrics()
+        g.drawString (Jugador2+":     "+Puntaje2, x + w - 65 - g.getFontMetrics()
                 .stringWidth(Jugador2), y + g.getFontMetrics().getAscent() + 30);
          
     }

@@ -41,9 +41,16 @@ public class Tanque {
     boolean pressed1=false;
     boolean pressed2=false;
     
-    //Rectangulos que cubren los tanques
-    Rectangle rectanglePlayer1;
-    Rectangle rectanglePlayer2;
+    //Disparos necesarios para destruir el tanque
+    int DIFICULTAD = 5;
+    
+    //Nivel de daño del tanque
+    int dañoT1 = 0;
+    int dañoT2 = 0;
+    //Rectangulo que cubre el tanques
+    Rectangle rectanglePlayer;
+    
+    
     
     //Imagen del tanque hacia arriba
     Image TankUP = new ImageIcon(this
@@ -68,7 +75,7 @@ public class Tanque {
     int jugador;
    
     public Tanque(Tablero t, int x, int y, int j) {
-        
+       
        balas = new ArrayList();
        tablero = t;
        this.x = x;
@@ -99,48 +106,65 @@ public class Tanque {
         y+= SPEEDY;
         x+=SPEEDX;
     }
-   
+    
+    public void reverse(){
+         switch (Orientacion) {
+                        case 1:
+                            abajo();
+                            break;
+                        case 2:
+                            arriba();
+                            break;
+                        case 3:
+                            derecha();
+                            break;
+                        case 4:
+                            izquierda();
+                            break;
+                    }
+    }
     
     public void update(){
      
-        rectanglePlayer1 = getBounds(Orientacion);
+        rectanglePlayer = getBounds(Orientacion);
         //System.out.print("x="+x);
         //System.out.println("    y="+y);
         for (int i = 0; i <= 13; i++) {
             for (int j = 0; j <= 9; j++) {
                 //Comparar el obstaculo en frente y detenerse
-                if (rectanglePlayer1.intersects(Tablero.muros[i][j].getx(), Tablero.muros[i][j].gety(), 50, 50) && Tablero.muros[i][j].getname().equals("acero")) {
-                    System.out.println("tocando " + Tablero.muros[i][j].getname());
-
-                    switch (Orientacion) {
-                        case 1:
-                            System.out.println("Obstaculo arriba ");
-                            abajo();
-
-                            break;
-                        case 2:
-                            System.out.println("Obstaculo abajo");
-                            arriba();
-
-                            break;
-                        case 3:
-                            System.out.println("Obstaculo a la izquierda");
-                            derecha();
-
-                            break;
-                        case 4:
-                            System.out.println("Obstaculo a la derecha");
-                            izquierda();
-
-                            break;
-                    }
+                if (rectanglePlayer.intersects(Tablero.muros[i][j].getx(), Tablero.muros[i][j].gety(), 50, 50) 
+                        && Tablero.muros[i][j].getname().equals("acero")) {
+                   reverse();
                 }
             }
+        }
+        //Limitacion con los bordes del escenario
+        if(rectanglePlayer.intersectsLine(45, 85, 45, 600)||rectanglePlayer.intersectsLine(45, 85, 755, 85)
+                ||rectanglePlayer.intersectsLine(755, 85, 755, 600)||rectanglePlayer.intersectsLine(45, 600, 755, 600)){
+            reverse();
+            
         }
         mov();
         tomarBandera();
     }
-    
+    public void destruido(int player){
+        //Destruccion de los tanques y reinicio en la base
+        if(player==1&&Bala.impactoT1==DIFICULTAD){
+            Tablero.tanque1.x = tablero.base1.x;
+            Tablero.tanque1.y = tablero.base1.y;
+            Bala.impactoT1 = 0;
+            System.out.println("Tanque 1"+Bala.impactoT1);
+            tablero.bandera2.poseedor = 3;
+
+        }else if(player==2&&Bala.impactoT2==DIFICULTAD){
+            Tablero.tanque2.x = tablero.base2.x;
+            Tablero.tanque2.y = tablero.base2.y;
+            Bala.impactoT2 = 0;
+            System.out.println("Tanque 1"+Bala.impactoT2);
+            tablero.bandera1.poseedor = 3;
+
+        }
+    }
     public void tomarBandera(){
         
         if(jugador == 1){
@@ -443,7 +467,7 @@ public class Tanque {
         }
     }
     public void actualizar(){
-            
+           destruido(jugador);
            PresionBoton();
            actualizacionBalas();
         

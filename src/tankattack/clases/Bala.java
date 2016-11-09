@@ -11,7 +11,6 @@ public class Bala {
     Tanque tank;
     
     Image Bala;
-    
     int x;
     int y;
     int direccion;
@@ -19,7 +18,8 @@ public class Bala {
     int SPEEDY;
     int SPEEDFINAL = 18;
     boolean visible;
-    
+    static int impactoT1 = 0;
+    static int impactoT2 = 0;
     public Bala(Tanque tank, int x, int y, int direcc) {
         
         Bala = new ImageIcon(this.getClass()
@@ -54,9 +54,8 @@ public class Bala {
       this.visible = visible;
     }
     public void update(){
-        //aux=choice();
-        Rectangle rectanglePlayer = getBounds(direccion);
         
+        Rectangle rectanglePlayer = getBounds(direccion);
         if(y>Tanque.BordeInferior||y<Tanque.BordeSuperior||x>Tanque.BordeDerecho||x<Tanque.BordeIzquierdo) visible = false;
         for(int i = 0; i <= 13; i++){
                 for(int j = 0; j <= 9; j++){
@@ -64,13 +63,18 @@ public class Bala {
                        if (rectanglePlayer.intersects(Tablero.muros[i][j].getx(),Tablero.muros[i][j].gety(), 50, 50)&&Tablero.muros[i][j].getname().equals("acero")/*||rectanglePlayer.intersects(rectanglePlayer*/){
                            visible=false; 
                        }
-                       if (Tablero.tanque1.jugador==1&&rectanglePlayer.intersects(Tablero.tanque1.getx(),Tablero.tanque1.gety(),50,50)){
-                           visible=false; 
-                       }
-                       if (Tablero.tanque2.jugador==2&&rectanglePlayer.intersects(Tablero.tanque2.getx(),Tablero.tanque2.gety(),50,50)){
-                           visible=false; 
-                       }
+                       
                 }
+        }
+        if (Tablero.tanque1.jugador == 1 && rectanglePlayer.intersects(Tablero.tanque1.getx(), Tablero.tanque1.gety(), 50, 50)) {
+            visible = false;
+            System.out.println("Impactado tanque 1");
+            impactoT1++;
+        }
+        if (Tablero.tanque2.jugador == 2 && rectanglePlayer.intersects(Tablero.tanque2.getx(), Tablero.tanque2.gety(), 50, 50)) {
+            visible = false;
+            System.out.println("Impactado tanque 2");
+            impactoT2++;
         }
         y+= SPEEDY;
         x+=SPEEDX;
