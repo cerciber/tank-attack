@@ -19,15 +19,16 @@ public class Marcador {
     int h = 100 - 20;
     int Puntaje1 = 0;
     int Puntaje2 = 0;
-    String J1;
-    String J2;
+    String Jugador1;
+    String Jugador2;
    
     /* Fuente texto */
     Font fuente = new Font ("Helvetica", Font.BOLD, 12);
     
     public Marcador(VS2Player e){
-        J1=JOptionPane.showInputDialog(null,"Nombre primer jugador");
-        J2=JOptionPane.showInputDialog(null,"Nombre segundo jugador");
+        //Ingreso nombre de los jugadores
+        Jugador1=JOptionPane.showInputDialog(null,"Nombre primer jugador");
+        Jugador2=JOptionPane.showInputDialog(null,"Nombre segundo jugador");
         escenario = e;
         
     }
@@ -41,10 +42,9 @@ public class Marcador {
         g.fillRect(x + 10, y + 10, w - 20, h - 20);
         g.setColor(Color.white);
         g.setFont(fuente);
-        g.drawString(J1+": "+Puntaje1, x + 30, y + g.getFontMetrics().getAscent() + 30);
-        
-        g.drawString (J2+": "+Puntaje2, x + w - 30 - g.getFontMetrics()
-                .stringWidth(J2), y + g.getFontMetrics().getAscent() + 30);
+        g.drawString(Jugador1+":      "+Puntaje1, x + 30, y + g.getFontMetrics().getAscent() + 30);
+        g.drawString (Jugador2+":     "+Puntaje2, x + w - 30 - g.getFontMetrics()
+                .stringWidth(Jugador2), y + g.getFontMetrics().getAscent() + 30);
          
     }
     
@@ -57,8 +57,14 @@ public class Marcador {
     
     }
     
-    public void actualizar(){
+    public void puntos(){
+        //Actualizacion puntaje
+        Puntaje1 = Tanque.Puntaje1;
+        Puntaje2 = Tanque.Puntaje2;
+    }
     
+    public void actualizar(){
+        puntos();
     
     }
     

@@ -35,11 +35,16 @@ public class Tanque {
     int SPEEDY;
     int SPEEDFINAL = 10;
     int REVERSE = 10;
+    static int Puntaje1 = 0;
+    static int Puntaje2 = 0;
     boolean pressed=false;
     boolean pressed1=false;
     boolean pressed2=false;
+    
+    //Rectangulos que cubren los tanques
     Rectangle rectanglePlayer1;
     Rectangle rectanglePlayer2;
+    
     //Imagen del tanque hacia arriba
     Image TankUP = new ImageIcon(this
             .getClass()
@@ -97,44 +102,43 @@ public class Tanque {
    
     
     public void update(){
-        
-            rectanglePlayer1 = getBounds(Orientacion);
-            System.out.print("x="+x);
-            System.out.println("    y="+y);
-            for(int i = 0; i <= 13; i++){
-                for(int j = 0; j <= 9; j++){
-         
-                       if (rectanglePlayer1.intersects(Tablero.muros[i][j].getx(),Tablero.muros[i][j].gety(), 50, 50)&&Tablero.muros[i][j].getname().equals("acero")){
-                            System.out.println("tocando "+Tablero.muros[i][j].getname());
-                                                     
-                            switch(Orientacion){
-                                case 1:
-                                    System.out.println("Obstaculo arriba ");
-                                   abajo();
-                                   
-                                break;
-                                case 2:
-                                    System.out.println("Obstaculo abajo");
-                                    arriba();
-                                    
-                                break;
-                                case 3:
-                                    System.out.println("Obstaculo a la izquierda");
-                                    derecha();
-                                 
-                                break;
-                                case 4:
-                                    System.out.println("Obstaculo a la derecha");
-                                    izquierda();
-                                   
-                                break;
-                            }
-                        }
+     
+        rectanglePlayer1 = getBounds(Orientacion);
+        //System.out.print("x="+x);
+        //System.out.println("    y="+y);
+        for (int i = 0; i <= 13; i++) {
+            for (int j = 0; j <= 9; j++) {
+                //Comparar el obstaculo en frente y detenerse
+                if (rectanglePlayer1.intersects(Tablero.muros[i][j].getx(), Tablero.muros[i][j].gety(), 50, 50) && Tablero.muros[i][j].getname().equals("acero")) {
+                    System.out.println("tocando " + Tablero.muros[i][j].getname());
+
+                    switch (Orientacion) {
+                        case 1:
+                            System.out.println("Obstaculo arriba ");
+                            abajo();
+
+                            break;
+                        case 2:
+                            System.out.println("Obstaculo abajo");
+                            arriba();
+
+                            break;
+                        case 3:
+                            System.out.println("Obstaculo a la izquierda");
+                            derecha();
+
+                            break;
+                        case 4:
+                            System.out.println("Obstaculo a la derecha");
+                            izquierda();
+
+                            break;
+                    }
                 }
             }
-            mov();
-            
-            tomarBandera();
+        }
+        mov();
+        tomarBandera();
     }
     
     public void tomarBandera(){
@@ -177,10 +181,10 @@ public class Tanque {
                tablero.bandera2.y + tablero.bandera2.h / 2 >= tablero.base1.y && 
                tablero.bandera2.y + tablero.bandera2.h / 2 <= tablero.base1.y + 50) {
            
-               tablero.bandera2.x = tablero.base1.x;
-               tablero.bandera2.y = tablero.base1.y;
+               tablero.bandera2.x = tablero.base2.x;
+               tablero.bandera2.y = tablero.base2.y;
                tablero.bandera2.poseedor = 3;
-                
+               Puntaje1 ++; 
             } 
             
         }else{
@@ -204,7 +208,7 @@ public class Tanque {
                tablero.bandera1.y + tablero.bandera1.h / 2 <= y + 50){
                 
                tablero.bandera1.poseedor = 4;
-                
+               
             }
             
             // Llevar bandera enemiga
@@ -221,10 +225,10 @@ public class Tanque {
                tablero.bandera1.y + tablero.bandera1.h / 2 >= tablero.base2.y && 
                tablero.bandera1.y + tablero.bandera1.h / 2 <= tablero.base2.y + 50) {
            
-               tablero.bandera1.x = tablero.base2.x;
-               tablero.bandera1.y = tablero.base2.y;
+               tablero.bandera1.x = tablero.base1.x;
+               tablero.bandera1.y = tablero.base1.y;
                tablero.bandera1.poseedor = 3;
-                
+               Puntaje2 ++; 
             } 
             
         }
@@ -423,11 +427,12 @@ public class Tanque {
         }
     }
     
-    public void actualizar(){
-            
-            if(pressed1){update();}   
-            else if(pressed2){update();}
-        
+    public void PresionBoton(){
+        if(pressed1){update();}   
+        else if(pressed2){update();}
+    }
+    
+    public void actualizacionBalas(){
         for(int j = 0; j < balas.size(); j++){
             Bala b = (Bala) balas.get(j);
             if(b.isVisible()){
@@ -436,6 +441,12 @@ public class Tanque {
             else
                 balas.remove(j);
         }
+    }
+    public void actualizar(){
+            
+           PresionBoton();
+           actualizacionBalas();
+        
     }
    
 }
