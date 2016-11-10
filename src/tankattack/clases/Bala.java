@@ -60,9 +60,24 @@ public class Bala {
         for(int i = 0; i <= 13; i++){
                 for(int j = 0; j <= 9; j++){
          
-                       if (rectanglePlayer.intersects(Tablero.muros[i][j].getx(),Tablero.muros[i][j].gety(), 50, 50)&&Tablero.muros[i][j].getname().equals("acero")/*||rectanglePlayer.intersects(rectanglePlayer*/){
-                           visible=false; 
-                       }
+                    if (rectanglePlayer.intersects(Tablero.muros[i][j].getx(), Tablero.muros[i][j].gety(), 50, 50)) {
+                        
+                        switch(Tablero.muros[i][j].getname()){
+                        case "ladrillo":
+                            Tablero.muros[i][j].impactos++;
+                            visible=false; 
+                            break;
+                        case "piedra":
+                            Tablero.muros[i][j].impactos++;
+                            visible=false; 
+                            break;    
+                        case "acero":
+                            Tablero.muros[i][j].impactos++;
+                            visible=false; 
+                            break;    
+                        }
+                        
+                    }
                        
                 }
         }

@@ -19,16 +19,16 @@ public class Muro {
     int tipo;
     
     int resistencia;    // Resistencia a las balas
-    boolean traspasableBalas;   // limitacion de balas
-    boolean traspasableTanque;  // limitacion de tanque
-    boolean estado;  // estado de la prensa (abierto/carrado)
+    int impactos = 0;
     int ancho = 50;
     int alto = 50;
      int x;
      int y;
     String Nombre;
-     /* Subobjetos */
+    
+    /* Subobjetos */
     Objeto muro;
+    Objeto[] roto = {null,null,null,null};
     
     public Muro(Tablero t, int x, int y, int tipo){
         
@@ -40,12 +40,15 @@ public class Muro {
         switch(tipo){
             case 1:
                 nombre = "ladrillo";
+                resistencia = 5;
                 break;
             case 2:
                 nombre = "piedra";
+                resistencia = 10;
                 break;
             case 3:
                 nombre = "acero";
+                resistencia = 20;
                 break;
             case 4:
                 nombre = "agua";
@@ -66,6 +69,15 @@ public class Muro {
             "/tankattack/imagenes/muro/" + nombre + ".gif");
         }
         
+        roto[0] = new Objeto(x, y, ancho, alto, 
+            "/tankattack/imagenes/muro/roto1.png");
+        roto[1] = new Objeto(x, y, ancho, alto, 
+            "/tankattack/imagenes/muro/roto2.png");
+        roto[2] = new Objeto(x, y, ancho, alto, 
+            "/tankattack/imagenes/muro/roto3.png");
+        roto[3] = new Objeto(x, y, ancho, alto, 
+            "/tankattack/imagenes/muro/roto4.png");
+        
         this.Nombre = nombre;
     }
     
@@ -73,6 +85,21 @@ public class Muro {
     public void paint(Graphics2D g){
         
         muro.paint(g);
+        if(impactos > resistencia){
+            muro = new Objeto(x, y, ancho, alto, 
+                "/tankattack/imagenes/muro/suelo.png");
+            Nombre = "suelo";
+            impactos = 0;
+            resistencia = 0;
+        } else if(impactos > resistencia * 80 / 100){
+            roto[3].paint(g);
+        }else if(impactos > resistencia * 60 / 100){
+            roto[2].paint(g);
+        }else if(impactos > resistencia * 40 / 100){
+            roto[1].paint(g);
+        }else if(impactos > resistencia * 20 / 100){
+            roto[0].paint(g);
+        }
 
     }
     
