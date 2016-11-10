@@ -19,6 +19,8 @@ public class Tanque {
     /* variables globales */
     int y;
     int x;
+    int yInicial;
+    int xInicial;
 
     /* Orientacion del tanque */
     // 1 = arriba
@@ -77,6 +79,8 @@ public class Tanque {
         tablero = t;
         this.x = x;
         this.y = y;
+        yInicial = y;
+        xInicial = x;
         jugador = j;
 
     }
@@ -144,10 +148,19 @@ public class Tanque {
                         || Tablero.muros[i][j].getname().equals("agua")
                         || Tablero.muros[i][j].getname().equals("ladrillo")
                         || Tablero.muros[i][j].getname().equals("piedra"))) {
+                    
                     if (retroceder) {
                         retroceder = false;
                         reverse();
                     }
+                    
+                } else if (Tablero.muros[i][j].getname().equals("hoyo") 
+                        && x + 25 > Tablero.muros[i][j].x
+                        && x + 25 < Tablero.muros[i][j].x + Tablero.muros[i][j].ancho
+                        && y + 25 > Tablero.muros[i][j].y
+                        && y + 25 < Tablero.muros[i][j].y + Tablero.muros[i][j].alto){
+                    x = tablero.x + 100;
+                    y = tablero.y + 50;
                 }
             }
         }
