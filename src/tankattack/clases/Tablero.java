@@ -40,20 +40,7 @@ public final class Tablero {
     }
     
     public void paint(Graphics2D g){
-        
-        // Pintar fondo blanco
-        g.setColor(Color.WHITE);
-        g.fillRect(x, y, w, h);
-        
-        /* Pintar matriz roja  */
-        g.setColor(Color.RED);
-        for(int i = x; i <= x + w; i += 50){
-            g.drawLine(i, y, i, y + h);
-        }
-        for(int i = y; i <= y + h; i += 50){
-            g.drawLine(x, i, x + w, i);
-        }
-                
+            
         /* pintar muros */
         for(int i = 0; i <= 13; i++){
             for(int j = 0; j <= 9; j++){
