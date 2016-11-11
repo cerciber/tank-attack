@@ -159,8 +159,16 @@ public class Tanque {
                         && x + 25 < Tablero.muros[i][j].x + Tablero.muros[i][j].ancho
                         && y + 25 > Tablero.muros[i][j].y
                         && y + 25 < Tablero.muros[i][j].y + Tablero.muros[i][j].alto){
-                    x = tablero.x + 100;
-                    y = tablero.y + 50;
+                    
+                        if(jugador == 1){
+                            x = tablero.x + 100;
+                            y = tablero.y + 50;
+                        }else{
+                            x = tablero.x + 550;
+                            y = tablero.y + 400;
+                        }
+                    
+                    
                 }
             }
         }
