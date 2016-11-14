@@ -163,9 +163,12 @@ public class Tanque {
                         if(jugador == 1){
                             x = tablero.x + 100;
                             y = tablero.y + 50;
+                            tablero.bandera2.poseedor = 3;
+                            
                         }else{
                             x = tablero.x + 550;
                             y = tablero.y + 400;
+                            tablero.bandera1.poseedor = 3;
                         }
                     
                     
@@ -180,26 +183,27 @@ public class Tanque {
 
         }
         mov();
-        tomarBandera();
     }
 
     public void destruido(int player) {
+        
         //Destruccion de los tanques y reinicio en la base
         if (player == 1 && Bala.impactoT1 == DIFICULTAD) {
-            Tablero.tanque1.x = tablero.base1.x;
-            Tablero.tanque1.y = tablero.base1.y;
+            x = tablero.base1.x;
+            y = tablero.base1.y;
             Bala.impactoT1 = 0;
             System.out.println("Tanque 1" + Bala.impactoT1);
             tablero.bandera2.poseedor = 3;
 
         } else if (player == 2 && Bala.impactoT2 == DIFICULTAD) {
-            Tablero.tanque2.x = tablero.base2.x;
-            Tablero.tanque2.y = tablero.base2.y;
+            x = tablero.base2.x;
+            y = tablero.base2.y;
             Bala.impactoT2 = 0;
             System.out.println("Tanque 1" + Bala.impactoT2);
             tablero.bandera1.poseedor = 3;
 
         }
+        
     }
 
     public void tomarBandera() {
@@ -512,6 +516,7 @@ public class Tanque {
         destruido(jugador);
         PresionBoton();
         actualizacionBalas();
+        tomarBandera();
 
     }
 
