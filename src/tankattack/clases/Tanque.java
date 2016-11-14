@@ -27,10 +27,10 @@ public class Tanque {
     // 4 = derecha
     int Orientacion = 2;
 
-    static int BordeSuperior = 90;
-    static int BordeInferior = 500;
+    static int BordeSuperior = 85;
+    static int BordeInferior = 600;
     static int BordeIzquierdo = 45;
-    static int BordeDerecho = 700;
+    static int BordeDerecho = 755;
     int SPEEDX;
     int SPEEDY;
     int SPEEDFINAL = 10;
@@ -133,8 +133,8 @@ public class Tanque {
     public void update() {
 
         rectanglePlayer = getBounds(Orientacion);
-        //System.out.print("x="+x);
-        //System.out.println("    y="+y);
+        System.out.print("x="+x);
+        System.out.println("    y="+y);
         boolean retroceder = true;
         for (int i = 0; i <= 13; i++) {
             for (int j = 0; j <= 9; j++) {
