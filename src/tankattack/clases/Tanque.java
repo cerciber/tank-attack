@@ -161,14 +161,12 @@ public class Tanque {
                         && y + 25 < Tablero.muros[i][j].y + Tablero.muros[i][j].alto){
                     
                         if(jugador == 1){
-                            x = tablero.x + 100;
-                            y = tablero.y + 50;
-                            tablero.bandera2.poseedor = 3;
+                            Bala.impactoT1 = DIFICULTAD;
+                            destruido(jugador);
                             
                         }else{
-                            x = tablero.x + 550;
-                            y = tablero.y + 400;
-                            tablero.bandera1.poseedor = 3;
+                            Bala.impactoT2 = DIFICULTAD;
+                            destruido(jugador);
                         }
                     
                     
@@ -194,13 +192,15 @@ public class Tanque {
             Bala.impactoT1 = 0;
             System.out.println("Tanque 1" + Bala.impactoT1);
             tablero.bandera2.poseedor = 3;
+            tablero.tanque1 = new Tanque(tablero, tablero.x + 100, tablero.y + 50, 1);
 
         } else if (player == 2 && Bala.impactoT2 == DIFICULTAD) {
             x = tablero.base2.x;
             y = tablero.base2.y;
             Bala.impactoT2 = 0;
-            System.out.println("Tanque 1" + Bala.impactoT2);
+            System.out.println("Tanque 2" + Bala.impactoT2);
             tablero.bandera1.poseedor = 3;
+            tablero.tanque2 = new Tanque(tablero, tablero.x + 550, tablero.y + 400, 2);
 
         }
         

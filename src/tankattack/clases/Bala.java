@@ -81,12 +81,12 @@ public class Bala {
                        
                 }
         }
-        if (Tablero.tanque1.jugador == 1 && rectanglePlayer.intersects(Tablero.tanque1.getx(), Tablero.tanque1.gety(), 50, 50)) {
+        if (rectanglePlayer.intersects(tank.tablero.tanque1.getx(), tank.tablero.tanque1.gety(), 50, 50)) {
             visible = false;
             System.out.println("Impactado tanque 1");
             impactoT1++;
         }
-        if (Tablero.tanque2.jugador == 2 && rectanglePlayer.intersects(Tablero.tanque2.getx(), Tablero.tanque2.gety(), 50, 50)) {
+        if (rectanglePlayer.intersects(tank.tablero.tanque2.getx(), tank.tablero.tanque2.gety(), 50, 50)) {
             visible = false;
             System.out.println("Impactado tanque 2");
             impactoT2++;
