@@ -13,9 +13,10 @@ public class Muro {
     // 1 : "ladrillo"
     // 2 : "piedra"
     // 3 : "acero"
-    // 4 : "agua"
-    // 5 : "hollo"
-    // 6 : "suelo"
+    // 4 : "suelo"
+    // 5 : "agua"
+    // 6 : "hollo"
+    
     int tipo;
     
     int resistencia;    // Resistencia a las balas
@@ -35,6 +36,7 @@ public class Muro {
         tablero = t;
         this.x = x;
         this.y = y;
+        this.tipo = tipo;
         String nombre = null;
         
         switch(tipo){
@@ -51,14 +53,14 @@ public class Muro {
                 resistencia = 20;
                 break;
             case 4:
-                nombre = "agua";
-                break;
-            case 5:
-                nombre = "hoyo";
-                break;
-            case 6:
                 nombre = "suelo";
                 break;
+            case 5:
+                nombre = "agua";
+                break;
+            case 6:
+                nombre = "hoyo";
+                break; 
         }
         
         try{
