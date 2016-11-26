@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Tanque {
 
@@ -37,14 +38,11 @@ public class Tanque {
     int SPEEDY;
     int SPEEDFINAL = 10;
     int REVERSE = 10;
-    static int Puntaje1 = 0;
-    static int Puntaje2 = 0;
+    int Puntaje1 = 0;
+    int Puntaje2 = 0;
     boolean pressed = false;
     boolean pressed1 = false;
     boolean pressed2 = false;
-
-    //Disparos necesarios para destruir el tanque
-    int DIFICULTAD = 5;
 
     //Nivel de daño del tanque
     int dañoT1 = 0;
@@ -161,11 +159,11 @@ public class Tanque {
                         && y + 25 < Tablero.muros[i][j].y + Tablero.muros[i][j].alto){
                     
                         if(jugador == 1){
-                            Bala.impactoT1 = DIFICULTAD;
+                            Bala.impactoT1 = tablero.escenario.resistencia;
                             destruido(jugador);
                             
                         }else{
-                            Bala.impactoT2 = DIFICULTAD;
+                            Bala.impactoT2 = tablero.escenario.resistencia;
                             destruido(jugador);
                         }
 
@@ -186,20 +184,22 @@ public class Tanque {
     public void destruido(int player) {
         
         //Destruccion de los tanques y reinicio en la base
-        if (player == 1 && Bala.impactoT1 == DIFICULTAD) {
+        if (player == 1 && Bala.impactoT1 == tablero.escenario.resistencia) {
             x = tablero.base1.x;
             y = tablero.base1.y;
             Bala.impactoT1 = 0;
             System.out.println("Tanque 1" + Bala.impactoT1);
             tablero.bandera2.poseedor = 3;
+            tablero.escenario.marcador.highscore2+=100;
             tablero.tanque1 = new Tanque(tablero, tablero.base1.x, tablero.base1.y, 1);
 
-        } else if (player == 2 && Bala.impactoT2 == DIFICULTAD) {
+        } else if (player == 2 && Bala.impactoT2 == tablero.escenario.resistencia) {
             x = tablero.base2.x;
             y = tablero.base2.y;
             Bala.impactoT2 = 0;
             System.out.println("Tanque 2" + Bala.impactoT2);
             tablero.bandera1.poseedor = 3;
+            tablero.escenario.marcador.highscore1+=100;
             tablero.tanque2 = new Tanque(tablero, tablero.base2.x, tablero.base2.y, 2);
 
         }
@@ -249,7 +249,15 @@ public class Tanque {
                 tablero.bandera2.x = tablero.base2.x;
                 tablero.bandera2.y = tablero.base2.y;
                 tablero.bandera2.poseedor = 3;
-                Puntaje1++;
+                tablero.escenario.marcador.Puntaje1++;
+                tablero.escenario.marcador.highscore1+=1000;
+                
+                if(tablero.escenario.marcador.Puntaje1 == tablero.escenario.numBanderas){
+                    tablero.escenario.menuPrincipal.cambiarPantalla = 0;
+                    JOptionPane.showMessageDialog(null, "El ganador es: "+ tablero.escenario.marcador.Jugador1);                    
+                }
+                
+                
             }
 
         } else {
@@ -293,7 +301,14 @@ public class Tanque {
                 tablero.bandera1.x = tablero.base1.x;
                 tablero.bandera1.y = tablero.base1.y;
                 tablero.bandera1.poseedor = 3;
-                Puntaje2++;
+                tablero.escenario.marcador.Puntaje2++;
+                tablero.escenario.marcador.highscore2+=1000;
+                
+                if(tablero.escenario.marcador.Puntaje2 == tablero.escenario.numBanderas){
+                    tablero.escenario.menuPrincipal.cambiarPantalla = 0;
+                    JOptionPane.showMessageDialog(null, "El ganador es: "+ tablero.escenario.marcador.Jugador2);   
+                }
+                
             }
 
         }
@@ -508,6 +523,8 @@ public class Tanque {
                 b.update();
             } else {
                 balas.remove(j);
+                
+                
             }
         }
     }

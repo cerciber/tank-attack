@@ -66,14 +66,29 @@ public class Bala {
                         case "ladrillo":
                             Tablero.muros[i][j].impactos++;
                             visible=false; 
+                            if(tank.jugador == 1){
+                                tank.tablero.escenario.marcador.highscore1+=10;
+                            }else{
+                                tank.tablero.escenario.marcador.highscore2+=10;
+                            }
                             break;
                         case "piedra":
                             Tablero.muros[i][j].impactos++;
                             visible=false; 
+                            if(tank.jugador == 1){
+                                tank.tablero.escenario.marcador.highscore1+=10;
+                            }else{
+                                tank.tablero.escenario.marcador.highscore2+=10;
+                            }
                             break;    
                         case "acero":
                             Tablero.muros[i][j].impactos++;
                             visible=false; 
+                            if(tank.jugador == 1){
+                                tank.tablero.escenario.marcador.highscore1+=10;
+                            }else{
+                                tank.tablero.escenario.marcador.highscore2+=10;
+                            }
                             break;    
                         }
                         

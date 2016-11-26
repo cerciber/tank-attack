@@ -24,6 +24,8 @@ public class MenuPrincipal {
             "/tankattack/imagenes/menuPrinicipal/VS2Player.png");
     Objeto textoConfiguracion = new Objeto(800/2-300/2, 300-50/2+50, 300, 50, 
             "/tankattack/imagenes/menuPrinicipal/Configuracion.png");
+    Objeto volver = new Objeto(0, 600-80, 100, 50, 
+            "/tankattack/imagenes/configuracion/img7.png");
     
     public MenuPrincipal(PantallaDePresentacion p){
         
@@ -40,6 +42,7 @@ public class MenuPrincipal {
                 pantallaDePresentacion.titulo.paint(g);  // Pintar titulo
                 textoVS2Player.paint(g);  // Pintar texto VS 2 Player
                 textoConfiguracion.paint(g);  // Pintar texto Configuracion
+                volver.paint(g);
                 break;
             case 1:
                 vs2Player.paint(g);
@@ -61,7 +64,11 @@ public class MenuPrincipal {
                 } else if(textoConfiguracion.click(me)){
                     configuracion = new Configuracion(this);
                     cambiarPantalla = 2;
-                }
+                }else if(volver.click(me)){
+            
+                    pantallaDePresentacion.cambiarPantalla = 0;
+
+                }  
                 break;
             case 1:
                 vs2Player.eventos(me);

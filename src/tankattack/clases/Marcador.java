@@ -19,16 +19,24 @@ public class Marcador {
     int h = 100 - 20;
     int Puntaje1 = 0;
     int Puntaje2 = 0;
-    String Jugador1;
-    String Jugador2;
+    int highscore1 = 0;
+    int highscore2 = 0;
+    String Jugador1 = "Jugador 1";
+    String Jugador2 = "Jugador 2";
    
     /* Fuente texto */
     Font fuente = new Font ("Helvetica", Font.BOLD, 16);
     
     public Marcador(VS2Player e){
         //Ingreso nombre de los jugadores
-        Jugador1=JOptionPane.showInputDialog(null,"Nombre primer jugador");
-        Jugador2=JOptionPane.showInputDialog(null,"Nombre segundo jugador");
+        Jugador1 = JOptionPane.showInputDialog(null,"Nombre primer jugador");
+        if(Jugador1 == null || "".equals(Jugador1)){
+            Jugador1 = "Jugador 1";
+        }
+        Jugador2 = JOptionPane.showInputDialog(null,"Nombre segundo jugador");
+        if(Jugador2 == null || "".equals(Jugador2)){
+            Jugador2 = "Jugador 2";
+        }
         escenario = e;
         
     }
@@ -42,9 +50,12 @@ public class Marcador {
         g.fillRect(x + 10, y + 10, w - 20, h - 20);
         g.setColor(Color.white);
         g.setFont(fuente);
-        g.drawString(Jugador1+":      "+Puntaje1, x + 30, y + g.getFontMetrics().getAscent() + 30);
-        g.drawString (Jugador2+":     "+Puntaje2, x + w - 65 - g.getFontMetrics()
-                .stringWidth(Jugador2), y + g.getFontMetrics().getAscent() + 30);
+        g.drawString(Jugador1, x + 30, y + g.getFontMetrics().getAscent() + 20);
+        g.drawString (Jugador2, x + w - 20 - g.getFontMetrics()
+                .stringWidth(Jugador2), y + g.getFontMetrics().getAscent() + 20);
+        g.drawString("Puntos:      "+Puntaje1+"      Highscore:      "+highscore1, x + 30, y + g.getFontMetrics().getAscent() + 40);
+        g.drawString ("Puntos:      "+Puntaje2+"      Highscore:      "+highscore2, x + w - 20 - g.getFontMetrics()
+                .stringWidth("Puntos:      "+Puntaje2+"      Highscore:      "+highscore2), y + g.getFontMetrics().getAscent() + 40);
          
     }
     
@@ -57,14 +68,8 @@ public class Marcador {
     
     }
     
-    public void puntos(){
-        //Actualizacion puntaje
-        Puntaje1 = Tanque.Puntaje1;
-        Puntaje2 = Tanque.Puntaje2;
-    }
-    
     public void actualizar(){
-        puntos();
+        
     
     }
     

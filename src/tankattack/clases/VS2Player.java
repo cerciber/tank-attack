@@ -13,6 +13,10 @@ public class VS2Player {
     Tablero tablero;
     Marcador marcador;
     
+    /* Variables del archivo de texto */
+    int resistencia = 10;
+    int numBanderas = 2;
+    
     public VS2Player(MenuPrincipal m){
         
         menuPrincipal = m;

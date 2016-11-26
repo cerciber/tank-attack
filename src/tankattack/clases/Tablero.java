@@ -1,6 +1,5 @@
 package tankattack.clases;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -129,7 +128,9 @@ public final class Tablero {
         for (int i = 0, px = x; i <= 13; i++, px += 50) {
             for (int j = 0, py = y; j <= 9; j++, py += 50) {
 
-                if (i == 1 && j == 1) {
+                muros[i][j] = new Muro(this, px, py, 4);
+                
+                /*if (i == 1 && j == 1) {
                     
                     muros[i][j] = new Muro(this, px, py, 4);
                     
@@ -159,7 +160,7 @@ public final class Tablero {
                     
                     muros[i][j] = new Muro(this, px, py, (int) (Math.random() * (1 - 7) + 7));
                     
-                }
+                }*/
 
             }
         }
